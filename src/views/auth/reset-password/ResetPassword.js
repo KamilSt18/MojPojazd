@@ -1,23 +1,16 @@
 import React, {useContext} from 'react';
-import {
-  SafeAreaView,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-  Modal,
-} from 'react-native';
+import {View, Text, SafeAreaView, StyleSheet} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {TouchableOpacity, Modal} from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {AuthContext} from '../../../navigation/AuthProvider';
 import {appStyles} from '../../../styles/constants';
 import {MAIN_COLORS, ADDITIONAL_COLORS} from '../../../styles/colors';
+import {AuthContext} from '../../../navigation/AuthProvider';
 import {schema} from './validationSchema';
 import TextField from '../../../components/text-field/TextField';
 import TextButton from '../../../components/TextButton';
-import {SCREENS} from '../../../navigation/constants';
 
 const styles = StyleSheet.create({
   ...appStyles,
@@ -25,7 +18,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flex: 1,
   },
-  login: {
+  reset: {
     color: ADDITIONAL_COLORS.TEXT.BLUE,
     fontSize: 25,
     textAlign: 'center',
@@ -35,10 +28,9 @@ const styles = StyleSheet.create({
   angle: {
     padding: 20,
   },
-  loginButton: {
+  resetButton: {
     backgroundColor: MAIN_COLORS.PRIMARY,
   },
-
   centeredView: {
     flex: 1,
     justifyContent: 'center',
@@ -63,17 +55,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'red',
   },
-  resetPassword: {
-    textAlign: 'right',
-    marginHorizontal: 20,
-    marginVertical: 5,
-    color: ADDITIONAL_COLORS.TEXT.BLUE,
-    fontWeight: '500',
-  },
 });
 
-const LoginScreen = ({navigation}) => {
-  const {login, modalVisible, setModalVisible, err} = useContext(AuthContext);
+const ResetPassword = ({navigation}) => {
+  const {resetPassword, modalVisible, setModalVisible, err} =
+    useContext(AuthContext);
   const {
     control,
     handleSubmit,
@@ -83,15 +69,18 @@ const LoginScreen = ({navigation}) => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = ({email, password}) => {
-    resetField('password');
+  const onSubmit = ({email}) => {
+    resetField('email');
     try {
-      login(email, password);
+      resetPassword(email);
+      setModalVisible(true);
+      setTimeout(() => {
+        setModalVisible(false);
+      }, 1500);
     } catch (e) {
       console.log(e);
     }
   };
-
   return (
     <SafeAreaView style={styles.root}>
       <View>
@@ -109,7 +98,7 @@ const LoginScreen = ({navigation}) => {
         </TouchableOpacity>
       </View>
       <View style={styles.container}>
-        <Text style={styles.login}>Zaloguj się</Text>
+        <Text style={styles.reset}>Resetowanie hasła</Text>
 
         <View>
           <Controller
@@ -127,42 +116,17 @@ const LoginScreen = ({navigation}) => {
               />
             )}
           />
-          <Controller
-            name={'password'}
-            control={control}
-            defaultValue={''}
-            render={({field: {onChange, onBlur, value}}) => (
-              <TextField
-                label="Hasło"
-                value={value}
-                onBlur={onBlur}
-                onChangeText={value => onChange(value)}
-                error={errors.password}
-                secureTextEntry={true}
-                textContentType="password"
-              />
-            )}
-          />
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate(SCREENS.AUTH.RESET_PASSWORD.ID);
-            }}
-            activeOpacity={0.5}>
-            <Text style={styles.resetPassword}>Nie pamiętasz hasła?</Text>
-          </TouchableOpacity>
         </View>
-
         <View>
           <TextButton
-            label={'Zaloguj się'}
-            ViewProps={[styles.loginButton]}
+            label={'Resetuj hasło'}
+            ViewProps={[styles.resetButton]}
             TouchableOpacityProps={{
               onPress: handleSubmit(onSubmit),
             }}
             sign={true}
           />
         </View>
-
         <Modal
           animationType="fade"
           transparent={true}
@@ -173,7 +137,7 @@ const LoginScreen = ({navigation}) => {
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
               <Text style={styles.modalText}>
-                {err && 'Błędny adres e-mail lub hasło!'}
+                Sprawdź swoją skrzynkę mailową.
               </Text>
             </View>
           </View>
@@ -183,4 +147,4 @@ const LoginScreen = ({navigation}) => {
   );
 };
 
-export default LoginScreen;
+export default ResetPassword;

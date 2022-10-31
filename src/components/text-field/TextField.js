@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: MAIN_COLORS.ORANGE,
     fontSize: 20,
+    color: ADDITIONAL_COLORS.TEXT.BLACK,
   },
   focus: {
     borderColor: MAIN_COLORS.PRIMARY,

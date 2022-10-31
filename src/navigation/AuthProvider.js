@@ -24,6 +24,10 @@ export const AuthProvider = ({children}) => {
 
             setModalVisible(true);
             setErr(e);
+            setTimeout(() => {
+              setModalVisible(false);
+              setErr('');
+            }, 1500);
           }
         },
         register: async (email, password) => {
@@ -31,6 +35,13 @@ export const AuthProvider = ({children}) => {
             await auth().createUserWithEmailAndPassword(email, password);
           } catch (e) {
             console.log(e);
+
+            setModalVisible(true);
+            setErr(e);
+            setTimeout(() => {
+              setModalVisible(false);
+              setErr('');
+            }, 1500);
           }
         },
         logout: async () => {

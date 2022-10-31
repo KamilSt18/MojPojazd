@@ -5,6 +5,7 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
+  Modal,
 } from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
@@ -47,10 +48,35 @@ const styles = StyleSheet.create({
     color: ADDITIONAL_COLORS.TEXT.BLUE,
     fontWeight: '500',
   },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: MAIN_COLORS.SECONDARY,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  modalText: {
+    textAlign: 'center',
+    color: 'red',
+  },
 });
 
 const SingupScreen = ({navigation}) => {
-  const {register} = useContext(AuthContext);
+  const {register, modalVisible, setModalVisible, err} =
+    useContext(AuthContext);
 
   const {
     control,
@@ -150,6 +176,21 @@ const SingupScreen = ({navigation}) => {
             <Text style={styles.link}>zasady i warunki</Text>.
           </Text>
         </View>
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(!modalVisible);
+          }}>
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>
+                {err && 'Nie można utworzyć konta...'}
+              </Text>
+            </View>
+          </View>
+        </Modal>
       </View>
     </SafeAreaView>
   );

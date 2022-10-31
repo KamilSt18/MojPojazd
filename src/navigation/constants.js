@@ -9,6 +9,9 @@ export const SCREENS = {
     ONBOARDING: {
       ID: 'ONBOARDING',
     },
+    RESET_PASSWORD: {
+      ID: 'RESET_PASSWORD',
+    },
   },
   HOME: {
     DASHBOARD: {
