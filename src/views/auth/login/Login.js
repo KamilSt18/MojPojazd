@@ -1,15 +1,20 @@
 import React, {useContext} from 'react';
-import {View, Text, Button} from 'react-native';
+import {SafeAreaView, Text, Button, StyleSheet} from 'react-native';
 
 import {AuthContext} from '../../../navigation/AuthProvider';
+import {appStyles} from '../../../styles/constants';
+
+const styles = StyleSheet.create({
+  ...appStyles,
+});
 
 const LoginScreen = () => {
-  const {setUser} = useContext(AuthContext);
+  const {setUser, login} = useContext(AuthContext);
   return (
-    <View>
+    <SafeAreaView style={styles.root}>
       <Text>Logowanie</Text>
-      <Button title={'Login'} onPress={() => setUser({})} />
-    </View>
+      <Button title={'Login'} onPress={() => login('test@test.pl', 'test12')} />
+    </SafeAreaView>
   );
 };
 

@@ -1,10 +1,44 @@
 import React from 'react';
-import {Text, TouchableOpacity} from 'react-native';
+import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 
-const TextButton = ({label, TouchableOpacityProps = {}, TextProps = {}}) => {
+import {ADDITIONAL_COLORS, MAIN_COLORS} from '../styles/colors';
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 15,
+    borderRadius: 16,
+    margin: 15,
+    textAlign: 'center',
+  },
+  mainText: {
+    color: ADDITIONAL_COLORS.TEXT.PRIMARY,
+    fontSize: 16,
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
+  },
+});
+
+const TextButton = ({
+  label,
+  TouchableOpacityProps = {},
+  ViewProps = {},
+  sign = false,
+}) => {
   return (
-    <TouchableOpacity {...TouchableOpacityProps}>
-      <Text {...TextProps}>{label}</Text>
+    <TouchableOpacity {...TouchableOpacityProps} activeOpacity={0.5}>
+      <View style={[styles.container, ...ViewProps]}>
+        <View />
+        <Text style={styles.mainText}>{label}</Text>
+        <View>
+          {sign && (
+            <Text style={{color: 'white', fontWeight: '900', fontSize: 16}}>
+              {'>'}
+            </Text>
+          )}
+        </View>
+      </View>
     </TouchableOpacity>
   );
 };

@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "744842598802",
+    "project_id": "mojpojazd-4585b",
+    "storage_bucket": "mojpojazd-4585b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744842598802:android:b937c6c81a26e377e8494b",
+        "android_client_info": {
+          "package_name": "com.mojpojazd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "744842598802-94ebkb5pb7i6oot96qabpft1j5gehja8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7IUe0aJ2hLnNR6goh396iDBPSk_atP98"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "744842598802-94ebkb5pb7i6oot96qabpft1j5gehja8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "744842598802-lj353sp12oq63q3nlitqmrc60qf2v3an.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.MojPojazd"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,19 +1,22 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, SafeAreaView, StyleSheet} from 'react-native';
 import {SvgXml} from 'react-native-svg';
+// import {ForrmattedMessage} from 'react-intl';
 
 import {SCREENS} from '../../../navigation/constants';
 import TextButton from '../../../components/TextButton';
 import {ADDITIONAL_COLORS, MAIN_COLORS} from '../../../styles/colors';
 import logoNew from '../../../assets/img/logo.svg';
+import {appStyles} from '../../../styles/constants';
 
 const styles = StyleSheet.create({
+  ...appStyles,
   logoText: {
     fontSize: 40,
     color: ADDITIONAL_COLORS.TEXT.BLUE,
     fontWeight: '500',
   },
-  constainer: {
+  helloSection: {
     flex: 2,
     justifyContent: 'center',
     alignContent: 'center',
@@ -22,21 +25,10 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     flex: 1,
   },
-  button: {
-    padding: 15,
-    borderRadius: 5,
-    margin: 15,
-    textTransform: 'uppercase',
-    fontWeight: 'bold',
-    textAlign: 'center',
-    fontSize: 16,
-  },
   loginButton: {
-    color: ADDITIONAL_COLORS.TEXT.PRIMARY,
     backgroundColor: MAIN_COLORS.PRIMARY,
   },
   registerButton: {
-    color: ADDITIONAL_COLORS.TEXT.PRIMARY,
     backgroundColor: MAIN_COLORS.ORANGE,
   },
   hrContainer: {flexDirection: 'row', width: 200, padding: 20},
@@ -62,36 +54,41 @@ const styles = StyleSheet.create({
 
 const OnBoarding = ({navigation}) => {
   return (
-    <>
-      <View style={styles.constainer}>
+    <SafeAreaView style={styles.root}>
+      <View style={styles.helloSection}>
         <SvgXml width="200" height="200" xml={logoNew} />
-        <Text style={styles.logoText}>Moje Pojazdy</Text>
+        <Text style={styles.logoText}>Moj Pojazd</Text>
         <View style={styles.hrContainer}>
           <View style={styles.hr} />
         </View>
         <Text style={styles.welcomeText}>
+          {/* <ForrmattedMessage
+            defaultMessage={'Zarządzaj swoimi pojazdami jedną aplikacją!'}
+            id={'views.auth.onboarding.welcomeText'}
+          /> */}
           Zarządzaj swoimi pojazdami jedną aplikacją!
         </Text>
       </View>
       <View style={styles.buttonsContainer}>
         <TextButton
           label={'Zaloguj się'}
-          onPress={() => navigation.navigate(SCREENS.AUTH.LOGIN.ID)}
-          TextProps={{style: [styles.button, styles.loginButton]}}
+          ViewProps={[styles.loginButton]}
           TouchableOpacityProps={{
             onPress: () => navigation.navigate(SCREENS.AUTH.LOGIN.ID),
           }}
+          sign={true}
         />
         <TextButton
           label={'Zarejestruj się'}
-          TextProps={{style: [styles.button, styles.registerButton]}}
+          ViewProps={[styles.registerButton]}
           TouchableOpacityProps={{
             onPress: () => navigation.navigate(SCREENS.AUTH.SING_UP.ID),
           }}
+          sign={true}
         />
       </View>
       <Text style={styles.footerText}>Wersja aplikacji: 1.0.0</Text>
-    </>
+    </SafeAreaView>
   );
 };
 
