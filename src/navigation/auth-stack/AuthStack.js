@@ -11,7 +11,7 @@ const Stack = createStackNavigator();
 const AuthStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName={SCREENS.AUTH.SING_UP.ID}
+      initialRouteName={SCREENS.AUTH.ONBOARDING.ID}
       screenOptions={{headerShown: false}}>
       <Stack.Screen name={SCREENS.AUTH.ONBOARDING.ID} component={OnBoarding} />
       <Stack.Screen name={SCREENS.AUTH.LOGIN.ID} component={LoginScreen} />

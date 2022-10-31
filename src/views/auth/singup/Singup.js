@@ -1,7 +1,14 @@
 import React, {useContext} from 'react';
-import {SafeAreaView, Text, View, StyleSheet} from 'react-native';
+import {
+  SafeAreaView,
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {AuthContext} from '../../../navigation/AuthProvider';
 import {appStyles} from '../../../styles/constants';
@@ -13,7 +20,7 @@ import {schema} from './validationSchema';
 const styles = StyleSheet.create({
   ...appStyles,
   container: {
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
     flex: 1,
   },
   joinUs: {
@@ -26,15 +33,23 @@ const styles = StyleSheet.create({
   agreementText: {
     textAlign: 'center',
     paddingHorizontal: 20,
+    marginBottom: 30,
     fontWeight: '500',
     color: ADDITIONAL_COLORS.TEXT.HINT,
   },
   registerButton: {
     backgroundColor: MAIN_COLORS.PRIMARY,
   },
+  angle: {
+    padding: 20,
+  },
+  link: {
+    color: ADDITIONAL_COLORS.TEXT.BLUE,
+    fontWeight: '500',
+  },
 });
 
-const SingupScreen = () => {
+const SingupScreen = ({navigation}) => {
   const {register} = useContext(AuthContext);
 
   const {
@@ -55,6 +70,20 @@ const SingupScreen = () => {
 
   return (
     <SafeAreaView style={styles.root}>
+      <View>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.goBack();
+          }}
+          activeOpacity={0.5}>
+          <Icon
+            name="angle-left"
+            size={40}
+            color={MAIN_COLORS.PRIMARY}
+            style={styles.angle}
+          />
+        </TouchableOpacity>
+      </View>
       <View style={styles.container}>
         <Text style={styles.joinUs}>Dołącz do nas już dziś!</Text>
         <View>
@@ -113,10 +142,12 @@ const SingupScreen = () => {
             TouchableOpacityProps={{
               onPress: handleSubmit(onSubmit),
             }}
+            sign={true}
           />
           <Text style={styles.agreementText}>
-            Kontynuując wyrażasz zgodę na politykę prywatności i zasady i
-            warunki.
+            Kontynuując wyrażasz zgodę na
+            <Text style={styles.link}> politykę prywatności </Text>i{' '}
+            <Text style={styles.link}>zasady i warunki</Text>.
           </Text>
         </View>
       </View>

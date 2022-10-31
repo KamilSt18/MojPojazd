@@ -5,10 +5,15 @@ export const AuthContext = createContext({});
 
 export const AuthProvider = ({children}) => {
   const [user, setUser] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [err, setErr] = useState('');
 
   return (
     <AuthContext.Provider
       value={{
+        modalVisible,
+        err,
+        setModalVisible,
         user,
         setUser,
         login: async (email, password) => {
@@ -16,6 +21,9 @@ export const AuthProvider = ({children}) => {
             await auth().signInWithEmailAndPassword(email, password);
           } catch (e) {
             console.log(e);
+
+            setModalVisible(true);
+            setErr(e);
           }
         },
         register: async (email, password) => {

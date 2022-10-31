@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {ADDITIONAL_COLORS, MAIN_COLORS} from '../styles/colors';
 
@@ -33,9 +34,11 @@ const TextButton = ({
         <Text style={styles.mainText}>{label}</Text>
         <View>
           {sign && (
-            <Text style={{color: 'white', fontWeight: '900', fontSize: 16}}>
-              {'>'}
-            </Text>
+            <Icon
+              name="angle-right"
+              size={20}
+              color={ADDITIONAL_COLORS.TEXT.PRIMARY}
+            />
           )}
         </View>
       </View>
