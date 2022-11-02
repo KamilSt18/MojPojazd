@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {SafeAreaView, Text, Button, StyleSheet} from 'react-native';
+import {SafeAreaView, Text, StyleSheet, ScrollView} from 'react-native';
 import {FormattedMessage} from 'react-intl';
 
 import {AuthContext} from '../../navigation/AuthProvider';
@@ -10,19 +10,17 @@ const styles = StyleSheet.create({
 });
 
 export default function HomeView({navigation}) {
-  const {logout, user} = useContext(AuthContext);
+  const {user} = useContext(AuthContext);
   return (
     <SafeAreaView style={styles.root}>
-      <Text>
-        {/* <FormattedMessage defaultMessage={'Hello'} id={'hello'} /> */}
-        {JSON.stringify(user)}
-        <Button
-          title={'Wyloguj'}
-          onPress={() => {
-            logout();
-          }}
-        />
-      </Text>
+      <ScrollView>
+        <Text style={{fontSize: 100}}>
+          {/* <FormattedMessage defaultMessage={'Hello'} id={'hello'} /> */}
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde eius id,
+          aliquid velit facilis eos, quam saepe labore, ut minus doloribus
+          nulla! Facilis omnis exercitationem vitae tempore modi dolores in.
+        </Text>
+      </ScrollView>
     </SafeAreaView>
   );
 }

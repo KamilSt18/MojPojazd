@@ -15,7 +15,16 @@ export const SCREENS = {
   },
   HOME: {
     DASHBOARD: {
-      ID: 'DASHBOARD',
+      ID: 'Strona główna',
+    },
+    MY_ACCOUNT: {
+      ID: 'Moje konto',
+    },
+    SETTINGS: {
+      ID: 'Ustawienia',
+    },
+    VEHICLES: {
+      ID: 'Pojazdy',
     },
   },
 };
