@@ -16,7 +16,7 @@ export const AuthProvider = ({children}) => {
         setModalVisible,
         user,
         setUser,
-        login: async (email, password) => {
+        login: async (email, password, resetField) => {
           try {
             await auth().signInWithEmailAndPassword(email, password);
           } catch (e) {
@@ -27,6 +27,7 @@ export const AuthProvider = ({children}) => {
             setTimeout(() => {
               setModalVisible(false);
               setErr('');
+              resetField('password');
             }, 1500);
           }
         },

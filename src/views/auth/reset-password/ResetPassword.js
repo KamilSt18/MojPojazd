@@ -70,12 +70,12 @@ const ResetPassword = ({navigation}) => {
   });
 
   const onSubmit = ({email}) => {
-    resetField('email');
     try {
       resetPassword(email);
       setModalVisible(true);
       setTimeout(() => {
         setModalVisible(false);
+        resetField('email');
       }, 1500);
     } catch (e) {
       console.log(e);

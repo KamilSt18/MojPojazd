@@ -84,9 +84,8 @@ const LoginScreen = ({navigation}) => {
   });
 
   const onSubmit = ({email, password}) => {
-    resetField('password');
     try {
-      login(email, password);
+      login(email, password, resetField);
     } catch (e) {
       console.log(e);
     }
