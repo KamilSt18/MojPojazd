@@ -10,11 +10,12 @@ const styles = StyleSheet.create({
 });
 
 export default function HomeView({navigation}) {
-  const {logout} = useContext(AuthContext);
+  const {logout, user} = useContext(AuthContext);
   return (
     <SafeAreaView style={styles.root}>
       <Text>
         {/* <FormattedMessage defaultMessage={'Hello'} id={'hello'} /> */}
+        {JSON.stringify(user)}
         <Button
           title={'Wyloguj'}
           onPress={() => {

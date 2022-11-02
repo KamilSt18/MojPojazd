@@ -1,5 +1,6 @@
-import React from 'react';
+import GestureHandlerRootView from 'react-native-gesture-handler';
 import 'react-native-gesture-handler';
+import React from 'react';
 
 import LangProvider, {LangModeProvider} from './src/lang/LangProvider';
 import AppRouter from './src/navigation';
