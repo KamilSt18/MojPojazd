@@ -59,6 +59,28 @@ export const AuthProvider = ({children}) => {
             console.log(e);
           }
         },
+        updateProfile: async update => {
+          try {
+            if (update['displayName'] == user.displayName) {
+              throw 'Dane się nie zmieniły!';
+            }
+            await auth().currentUser.updateProfile(update);
+
+            setModalVisible(true);
+            setTimeout(() => {
+              setModalVisible(false);
+            }, 1500);
+          } catch (e) {
+            console.log(e);
+
+            setModalVisible(true);
+            setErr(e);
+            setTimeout(() => {
+              setModalVisible(false);
+              setErr('');
+            }, 1500);
+          }
+        },
       }}>
       {children}
     </AuthContext.Provider>

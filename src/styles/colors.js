@@ -1,8 +1,8 @@
 export const MAIN_COLORS = {
-  PRIMARY: '#52C3FF',
+  PRIMARY: '#89CFF0',
   SECONDARY: '#FEF9F3',
   TERTIARY: '#FFCB57',
-  ORANGE: '#FF7E07',
+  ORANGE: '#FFAC63',
 };
 
 export const ADDITIONAL_COLORS = {
@@ -14,8 +14,12 @@ export const ADDITIONAL_COLORS = {
   TEXT: {
     PRIMARY: '#FCFCFC',
     SECONDARY: '#F9F9F9',
+    GLOBAL: '#000',
     HINT: '#6D6D78',
     BLUE: '#1434A4',
     BLACK: '#3a3a3a',
+    LIME: '#bfff00',
+    PARMESEAN: '#FDE992',
+    GREEN: 'green',
   },
 };
