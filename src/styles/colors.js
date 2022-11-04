@@ -1,8 +1,8 @@
 export const MAIN_COLORS = {
-  PRIMARY: '#89CFF0',
+  PRIMARY: '#5E5CB2',
   SECONDARY: '#FEF9F3',
   TERTIARY: '#FFCB57',
-  ORANGE: '#FFAC63',
+  ORANGE: '#ff964f',
 };
 
 export const ADDITIONAL_COLORS = {

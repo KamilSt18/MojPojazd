@@ -1426,10 +1426,10 @@
   resolved "https://registry.npmjs.org/@react-native-community/eslint-plugin/-/eslint-plugin-1.2.0.tgz"
   integrity sha512-o6aam+0Ug1xGK3ABYmBm0B1YuEKfM/5kaoZO0eHbZwSpw9UzDX4G5y4Nx/K20FHqUmJHkZmLvOUFYwN4N+HqKA==
 
-"@react-native-firebase/app@^16.3.1":
-  version "16.3.1"
-  resolved "https://registry.npmjs.org/@react-native-firebase/app/-/app-16.3.1.tgz"
-  integrity sha512-2MA90BfXTZ5lZPfWRSv2WfBS83JUKWanqBOMMOLd8/ZjKUfuJrw8uBxWqd8OMTKEWsbjs+VyxcRKH8VDyPM+zQ==
+"@react-native-firebase/app@^16.4.1":
+  version "16.4.1"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-16.4.1.tgz#d9c53c46814fd008f592b02b04e0f6077ed1e476"
+  integrity sha512-p8s7RIwwhWwz7rOrQry1+ujuUOrsaGJ7GdTLf5rgbcpgiVUN5DNmGvXYG9HeusXHd9INJQFn66S4JktDCIF/Ww==
   dependencies:
     "@expo/config-plugins" "^5.0.1"
     opencollective-postinstall "^2.0.1"
@@ -1439,6 +1439,11 @@
   version "16.3.1"
   resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-16.3.1.tgz#186ad232bf4b14eb9a560c10b47230af2f960a67"
   integrity sha512-zcN0SDzfs6+3AJAmca5ffwEkwEssTW7i2QMvvTzHRJmgVPJv2liWr18DHB+6kWM0tu9QvDhBN3cGml4uTWv49w==
+
+"@react-native-firebase/firestore@^16.4.1":
+  version "16.4.1"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-16.4.1.tgz#6fcf4a87edfb730b4bbce1c4a2d1b5d39fcc6dd9"
+  integrity sha512-va12bIhMnv/r6SsV+ZS8uQThfXqBicTYlb1fiUhUAvLkO59mcRM3i+dRrWApxLusFg3sO+dgeNaVV428Ny6u3Q==
 
 "@react-native/assets@1.0.0":
   version "1.0.0"
