@@ -14,6 +14,9 @@ import HomeView from '../../views/home/Home';
 import MyAccount from '../../views/my-account/MyAccount';
 import Settings from '../../views/settings/Settings';
 import Vehicles from '../../views/vehicles/Vehicles';
+import DrivingEssentials from '../../views/driving-essentials/DrivingEssentials';
+import Incident from '../../views/incident/Incident';
+
 import {MAIN_COLORS, ADDITIONAL_COLORS} from '../../styles/colors';
 import logoNew from '../../assets/img/logo.svg';
 import {LangContext} from '../../lang/LangProvider';
@@ -59,26 +62,19 @@ function CustomDrawerContent(props) {
         )}
       />
       <DrawerItem
-        label="Kontakt"
-        onPress={() => {
-          Linking.openURL('mailto:kamilst18@gmail.com');
-        }}
-        icon={({focused}) => (
-          <Icon size={23} name={'envelope'} color={MAIN_COLORS.PRIMARY} />
-        )}
-      />
-      <DrawerItem
-        label="Polityka prywatności"
+        label="Prywatność i zasady"
         onPress={() => alert('Polityka prywatności')}
         icon={({focused}) => (
           <Icon size={30} name={'lock'} color={MAIN_COLORS.PRIMARY} />
         )}
       />
       <DrawerItem
-        label="Zasady i warunki"
-        onPress={() => alert('Zasady i warunki')}
+        label="Kontakt"
+        onPress={() => {
+          Linking.openURL('mailto:kamilst18@gmail.com');
+        }}
         icon={({focused}) => (
-          <Icon size={23} name={'sticky-note'} color={MAIN_COLORS.PRIMARY} />
+          <Icon size={23} name={'envelope'} color={MAIN_COLORS.PRIMARY} />
         )}
       />
       <DrawerItem
@@ -146,6 +142,30 @@ const HomeDrawer = () => {
         options={{
           drawerIcon: () => (
             <Icon size={25} name={'car'} color={MAIN_COLORS.ORANGE} />
+          ),
+        }}
+      />
+
+      <Drawer.Screen
+        name={SCREENS.HOME.INCIDENT.ID}
+        component={Incident}
+        options={{
+          drawerIcon: () => (
+            <Icon
+              size={30}
+              name={'exclamation-triangle'}
+              color={MAIN_COLORS.ORANGE}
+            />
+          ),
+        }}
+      />
+
+      <Drawer.Screen
+        name={SCREENS.HOME.DRIVING_ESSENTIALS.ID}
+        component={DrivingEssentials}
+        options={{
+          drawerIcon: () => (
+            <Icon size={30} name={'book'} color={MAIN_COLORS.ORANGE} />
           ),
         }}
       />

@@ -29,6 +29,18 @@ export const SCREENS = {
         SHOW_VEHICLES: {ID: 'Wyświetl'},
         ADD_VEHICLE: {ID: 'Dodaj'},
       },
+      TOP_TAB_NAVIGATOR: {
+        DETAILS: {ID: 'Szczegóły'},
+        HISTORY: {ID: 'Historia'},
+        EXPENSES: {ID: 'Wydatki'},
+        STATISTICS: {ID: 'Statystyki'},
+      },
+    },
+    DRIVING_ESSENTIALS: {
+      ID: 'Niezbędnik kierowcy',
+    },
+    INCIDENT: {
+      ID: 'Incydent',
     },
   },
 };
