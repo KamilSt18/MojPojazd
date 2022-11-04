@@ -48,4 +48,19 @@ export const appStyles = {
     textAlign: 'center',
     color: 'red',
   },
+
+  shadowText: {
+    textShadowColor: 'rgba(58,58,58, 0.25)',
+    textShadowOffset: {width: -0.5, height: 0.5},
+    textShadowRadius: 0.1,
+  },
+  formatText: {
+    color: MAIN_COLORS.SECONDARY,
+    fontSize: 20,
+    // fontWeight: '500',
+  },
+  importantText: {
+    fontWeight: 'bold',
+    color: ADDITIONAL_COLORS.TEXT.PARMESEAN,
+  },
 };
