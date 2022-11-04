@@ -25,6 +25,10 @@ export const SCREENS = {
     },
     VEHICLES: {
       ID: 'Pojazdy',
+      TAB_NAVIGATOR: {
+        SHOW_VEHICLES: {ID: 'Wyświetl'},
+        ADD_VEHICLE: {ID: 'Dodaj'},
+      },
     },
   },
 };

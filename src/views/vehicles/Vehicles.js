@@ -1,18 +1,43 @@
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import React from 'react';
 import {Text, StyleSheet, SafeAreaView} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {appStyles} from '../../styles/constants';
+import AddVehicle from './add-view/AddVehicle';
+import ShowVehicles from './show-view/ShowVehicles';
+import {SCREENS} from '../../navigation/constants';
+import {MAIN_COLORS} from '../../styles/colors';
+
+const Tab = createMaterialBottomTabNavigator();
 
 const styles = StyleSheet.create({
   ...appStyles,
 });
 const Vehicles = () => {
   return (
-    <SafeAreaView style={styles.root}>
-      <Text>
-        <Text>Pojazdy</Text>
-      </Text>
-    </SafeAreaView>
+    <Tab.Navigator
+      initialRouteName={SCREENS.HOME.VEHICLES.TAB_NAVIGATOR.SHOW_VEHICLES.ID}
+      activeColor={MAIN_COLORS.SECONDARY}
+      inactiveColor={MAIN_COLORS.PRIMARY}
+      barStyle={{backgroundColor: MAIN_COLORS.ORANGE}}>
+      <Tab.Screen
+        options={{
+          tabBarIcon: ({color}) => <Icon name="eye" size={26} color={color} />,
+        }}
+        name={SCREENS.HOME.VEHICLES.TAB_NAVIGATOR.SHOW_VEHICLES.ID}
+        component={ShowVehicles}
+      />
+      <Tab.Screen
+        options={{
+          tabBarIcon: ({color}) => (
+            <Icon name="plus-circle" size={26} color={color} />
+          ),
+        }}
+        name={SCREENS.HOME.VEHICLES.TAB_NAVIGATOR.ADD_VEHICLE.ID}
+        component={AddVehicle}
+      />
+    </Tab.Navigator>
   );
 };
 
