@@ -81,6 +81,25 @@ export const AuthProvider = ({children}) => {
             }, 1500);
           }
         },
+        addVehicle: async props => {
+          try {
+            console.log(props);
+
+            setModalVisible(true);
+            setTimeout(() => {
+              setModalVisible(false);
+            }, 1500);
+          } catch (e) {
+            console.log(e);
+
+            setModalVisible(true);
+            setErr(e);
+            setTimeout(() => {
+              setModalVisible(false);
+              setErr('');
+            }, 1500);
+          }
+        },
       }}>
       {children}
     </AuthContext.Provider>

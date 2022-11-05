@@ -30,7 +30,7 @@ export const SCREENS = {
         ADD_VEHICLE: {ID: 'Dodaj'},
       },
       TOP_TAB_NAVIGATOR: {
-        DETAILS: {ID: 'Szczegóły'},
+        DETAILS: {ID: 'Raport'},
         HISTORY: {ID: 'Historia'},
         EXPENSES: {ID: 'Wydatki'},
         STATISTICS: {ID: 'Statystyki'},
