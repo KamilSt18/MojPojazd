@@ -39,9 +39,18 @@ const ShowVehicles = () => {
           dropdownIconRippleColor={MAIN_COLORS.PRIMARY}
           prompt="Wybierz pojazd"
           style={styles.pickerStyles}>
-          <Picker.Item label="Mój Merc" value="merc" />
-          <Picker.Item label="Moje moto" value="moto" />
-          <Picker.Item label="Służbowe" value="sluzbowe" />
+          <Picker.Item
+            label="SKODA, 3U, SUPERB 1"
+            value="SKODA, 3U, SUPERB 1"
+          />
+          <Picker.Item
+            label="SKODA, 3U, SUPERB 2"
+            value="SKODA, 3U, SUPERB 2"
+          />
+          <Picker.Item
+            label="SKODA, 3U, SUPERB 3"
+            value="SKODA, 3U, SUPERB 3"
+          />
         </Picker>
 
         <Tab.Navigator

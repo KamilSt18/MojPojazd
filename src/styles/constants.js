@@ -12,7 +12,7 @@ export const appStyles = {
     justifyContent: 'center',
     alignContent: 'center',
     backgroundColor: MAIN_COLORS.PRIMARY,
-    marginVertical: 10,
+    marginVertical: 6,
     padding: 12,
     shadowColor: '#000',
     shadowOffset: {

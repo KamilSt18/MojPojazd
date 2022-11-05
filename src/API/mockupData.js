@@ -9,7 +9,7 @@ export const MockupData = (
   <>
     <VehicleCard
       img={Car}
-      name="Mój merc"
+      name="SKODA, 3U, SUPERB"
       operation="Tankowanie"
       brand="Mercedes-Benz"
       model="Klasa S (W140)"
@@ -18,30 +18,48 @@ export const MockupData = (
     />
     <VehicleCard
       img={Bus}
-      name="Mój bus"
-      operation="Tankowanie"
+      name="SKODA, 3U, SUPERB"
+      operation="Naprawa"
       brand="Mercedes-Benz"
       model="Klasa S (W140)"
       VIN="VF73A9HC8DJ819035"
-      date="04.11.2022 10:28"
+      date="03.11.2022 10:28"
     />
     <VehicleCard
       img={Motorcycle}
-      name="Moje moto"
-      operation="Tankowanie"
+      name="SKODA, 3U, SUPERB"
+      operation="Ubezpieczenie"
       brand="Mercedes-Benz"
       model="Klasa S (W140)"
       VIN="VF73A9HC8DJ819035"
-      date="04.11.2022 10:28"
+      date="02.11.2022 10:28"
     />
     <VehicleCard
       img={Car}
-      name="Służbowe"
-      operation="Tankowanie"
+      name="SKODA, 3U, SUPERB"
+      operation="Serwis"
       brand="Mercedes-Benz"
       model="Klasa S (W140)"
       VIN="VF73A9HC8DJ819035"
-      date="04.11.2022 10:28"
+      date="01.11.2022 10:28"
+    />
+    <VehicleCard
+      img={Motorcycle}
+      name="SKODA, 3U, SUPERB"
+      operation="Ubezpieczenie"
+      brand="Mercedes-Benz"
+      model="Klasa S (W140)"
+      VIN="VF73A9HC8DJ819035"
+      date="01.11.2022 10:28"
+    />
+    <VehicleCard
+      img={Bus}
+      name="SKODA, 3U, SUPERB"
+      operation="Naprawa"
+      brand="Mercedes-Benz"
+      model="Klasa S (W140)"
+      VIN="VF73A9HC8DJ819035"
+      date="01.11.2022 10:28"
     />
   </>
 );

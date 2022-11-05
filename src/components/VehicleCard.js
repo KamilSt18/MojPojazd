@@ -6,9 +6,16 @@ import {ADDITIONAL_COLORS, MAIN_COLORS} from '../styles/colors';
 
 const styles = StyleSheet.create({
   ...appStyles,
+  vehicleLogoView: {
+    justifyContent: 'center',
+  },
   carImage: {
-    width: 90,
-    height: 90,
+    width: 50,
+    height: 50,
+    marginEnd: 4,
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // flex: 1,
   },
   carInfoView: {
     padding: 3,
@@ -43,7 +50,7 @@ const VehicleCard = ({
   return (
     <View style={styles.section}>
       <View style={styles.cardInfoCar}>
-        <View>
+        <View style={styles.vehicleLogoView}>
           <Image source={img} style={styles.carImage} />
         </View>
         <View style={styles.carInfoView}>

@@ -40,8 +40,9 @@ const styles = StyleSheet.create({
 });
 
 const AddVehicle = () => {
-  const {user, modalVisible, setModalVisible, err, addVehicle} =
-    useContext(AuthContext);
+  const {user} = useContext(AuthContext);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [err, setErr] = useState('');
   const [date, setDate] = useState(new Date());
   const {
     control,
@@ -53,18 +54,30 @@ const AddVehicle = () => {
   });
   const onSubmit = props => {
     try {
-      addVehicle(props);
+      console.log(props);
+
+      setModalVisible(true);
+      setTimeout(() => {
+        setModalVisible(false);
+      }, 1500);
 
       setDate(new Date());
       resetField('registrationPlate');
       resetField('vin');
     } catch (e) {
       console.log(e);
+
+      setModalVisible(true);
+      setErr(e);
+      setTimeout(() => {
+        setModalVisible(false);
+        setErr('');
+      }, 1500);
     }
   };
   return (
     <SafeAreaView style={styles.root}>
-      <ScrollView>
+      <ScrollView keyboardShouldPersistTaps="handled">
         <HeaderBox title="Dodawanie pojazdu" />
         <View>
           <Controller
@@ -129,26 +142,26 @@ const AddVehicle = () => {
             sign={true}
           />
         </View>
-      </ScrollView>
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}>
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text
-              style={[
-                styles.modalText,
-                !err ? {color: ADDITIONAL_COLORS.TEXT.GREEN} : null,
-              ]}>
-              {err ? `Wystąpił błąd! (${err})` : 'Pomyślnie dodano!'}
-            </Text>
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(!modalVisible);
+          }}>
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Text
+                style={[
+                  styles.modalText,
+                  !err ? {color: ADDITIONAL_COLORS.TEXT.GREEN} : null,
+                ]}>
+                {err ? `Wystąpił błąd! (${err})` : 'Pomyślnie dodano pojazd!'}
+              </Text>
+            </View>
           </View>
-        </View>
-      </Modal>
+        </Modal>
+      </ScrollView>
     </SafeAreaView>
   );
 };

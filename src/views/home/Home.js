@@ -17,7 +17,12 @@ import HeaderBox from '../../components/HeaderBox';
 
 const styles = StyleSheet.create({
   ...appStyles,
-  welcomeView: {width: 320, borderBottomEndRadius: 20, borderTopEndRadius: 20},
+  welcomeView: {
+    width: 250,
+    borderBottomEndRadius: 20,
+    borderTopEndRadius: 20,
+    marginVertical: 10,
+  },
 });
 
 export default function HomeView({navigation}) {
