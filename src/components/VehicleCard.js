@@ -7,8 +7,8 @@ import {ADDITIONAL_COLORS, MAIN_COLORS} from '../styles/colors';
 const styles = StyleSheet.create({
   ...appStyles,
   carImage: {
-    width: 130,
-    height: 130,
+    width: 90,
+    height: 90,
   },
   carInfoView: {
     padding: 3,
@@ -20,13 +20,15 @@ const styles = StyleSheet.create({
     marginVertical: 1,
     color: ADDITIONAL_COLORS.TEXT.PARMESEAN,
     fontWeight: 'bold',
+    fontSize: 12,
   },
   carDetailsColorText: {
     color: MAIN_COLORS.SECONDARY,
+    fontSize: 12,
   },
-  carHeaderText: {fontSize: 22, marginBottom: 1},
+  carHeaderText: {fontSize: 18, marginBottom: 1},
   cardInfoCar: {flex: 1, flexDirection: 'row'},
-  carDateText: {textAlign: 'right', marginTop: 5},
+  carDateText: {textAlign: 'right', marginTop: 5, fontSize: 10},
 });
 
 const VehicleCard = ({

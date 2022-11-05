@@ -56,7 +56,7 @@ export const appStyles = {
   },
   formatText: {
     color: MAIN_COLORS.SECONDARY,
-    fontSize: 20,
+    fontSize: 15,
     // fontWeight: '500',
   },
   importantText: {

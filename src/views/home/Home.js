@@ -13,9 +13,11 @@ import {AuthContext} from '../../navigation/AuthProvider';
 import {appStyles} from '../../styles/constants';
 import {ADDITIONAL_COLORS, MAIN_COLORS} from '../../styles/colors';
 import {MockupData} from '../../API/mockupData';
+import HeaderBox from '../../components/HeaderBox';
 
 const styles = StyleSheet.create({
   ...appStyles,
+  welcomeView: {width: 320, borderBottomEndRadius: 20, borderTopEndRadius: 20},
 });
 
 export default function HomeView({navigation}) {
@@ -24,8 +26,8 @@ export default function HomeView({navigation}) {
   return (
     <SafeAreaView style={styles.root}>
       <ScrollView>
-        <View style={[styles.section, {width: 320}]}>
-          <Text style={[styles.formatText, {fontSize: 22}, styles.shadowText]}>
+        <View style={[styles.section, styles.welcomeView]}>
+          <Text style={[styles.formatText, {fontSize: 18}, styles.shadowText]}>
             Witaj,{' '}
             <Text style={styles.importantText}>
               {user.displayName ? user.displayName : user.email}
@@ -37,16 +39,7 @@ export default function HomeView({navigation}) {
             .
           </Text>
         </View>
-        <View style={styles.section}>
-          <Text
-            style={[
-              styles.formatText,
-              {textAlign: 'center'},
-              styles.shadowText,
-            ]}>
-            Oś czasu twoich pojazdów:
-          </Text>
-        </View>
+        <HeaderBox title="Oś czasu twoich pojazdów:" />
 
         {MockupData}
       </ScrollView>
