@@ -31,9 +31,9 @@ export const SCREENS = {
       },
       TOP_TAB_NAVIGATOR: {
         DETAILS: {ID: 'Raport'},
-        HISTORY: {ID: 'Historia'},
+        ALERTS: {ID: 'Alerty'},
         EXPENSES: {ID: 'Wydatki'},
-        STATISTICS: {ID: 'Statystyki'},
+        PARK: {ID: 'Zaparkuj'},
       },
     },
     DRIVING_ESSENTIALS: {

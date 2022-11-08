@@ -7,13 +7,13 @@ const styles = StyleSheet.create({
   ...appStyles,
 });
 
-const HistoryTopTab = () => {
+const AlertsTopTab = () => {
   return (
     <SafeAreaView style={styles.root}>
       <View>
         <ScrollView>
           <View>
-            <Text>Historia pojazdu</Text>
+            <Text>Alerty</Text>
           </View>
         </ScrollView>
       </View>
@@ -21,4 +21,4 @@ const HistoryTopTab = () => {
   );
 };
 
-export default HistoryTopTab;
+export default AlertsTopTab;

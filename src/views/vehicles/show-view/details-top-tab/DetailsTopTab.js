@@ -10,43 +10,56 @@ const styles = StyleSheet.create({
   ...appStyles,
 });
 
-const DetailsTopTab = () => {
+const DetailsTopTab = ({data}) => {
+  const textBoxes = data.map(el =>
+    Object.entries(el)
+      .sort((a, b) => {
+        const order = [
+          'Marka',
+          'Model',
+          'Rodzaj',
+          'Typ',
+          'Rok produkcji',
+          'VIN',
+          'Polisa OC',
+          'Badanie techniczne',
+          'Ostatni stan drogomierza',
+          'Status rezerwacji',
+          'Pojemność silnika',
+          'Moc silnika',
+          'Paliwo',
+          'Liczba miejsc ogółem',
+          'Liczba miejsc siedzących',
+          'Masa własna pojazdu',
+          'Maks. masa całkowita ciągniętej przyczepy z hamulcem',
+          'Dopuszczalna masa całkowita',
+          'Liczba osi',
+          'Data wydania aktualnego dokumentu',
+          'Typ dokumentu',
+          'Stan dokumentu',
+        ];
+        order.reverse();
+        return order.indexOf(a[0]) - order.indexOf(b[0]);
+      })
+      .reverse()
+      .map(([k, v], index) => {
+        if (k == 'id') {
+          return null;
+        }
+        return (
+          <React.Fragment key={index}>
+            <TextBox title={k} important={true} />
+            <TextBox title={v} />
+          </React.Fragment>
+        );
+      }),
+  );
   return (
     <SafeAreaView style={styles.root}>
       <View>
         <ScrollView>
           {/* <HeaderBox title="Szczegóły o pojezdzie" /> */}
-          <Box>
-            <TextBox title="VIN:" important={true} />
-            <TextBox title="TMBDC63U679016591" />
-
-            <TextBox title="Marka:" important={true} />
-            <TextBox title="SKODA" />
-
-            <TextBox title="Model:" important={true} />
-            <TextBox title="3U, SUPERB" />
-
-            <TextBox title="Wersja silnika:" important={true} />
-            <TextBox title="1896 cm³, olej napędowy" />
-
-            <TextBox title="Typ:" important={true} />
-            <TextBox title="samochód osobowy, kareta (sedan)" />
-
-            <TextBox title="Rok produkcji:" important={true} />
-            <TextBox title="2007" />
-
-            <TextBox title="Przebieg:" important={true} />
-            <TextBox title="320 163 km" />
-
-            <TextBox title="Polisa OC:" important={true} />
-            <TextBox title="aktualna" />
-
-            <TextBox title="Badanie techniczne:" important={true} />
-            <TextBox title="aktualne" />
-
-            <TextBox title="Status rejestracji:" important={true} />
-            <TextBox title="Zarejestrowany" />
-          </Box>
+          <Box>{textBoxes}</Box>
         </ScrollView>
       </View>
     </SafeAreaView>

@@ -7,13 +7,13 @@ const styles = StyleSheet.create({
   ...appStyles,
 });
 
-const StatisticsTopTab = () => {
+const ParkTopTab = () => {
   return (
     <SafeAreaView style={styles.root}>
       <View>
         <ScrollView>
           <View>
-            <Text>Statystyki</Text>
+            <Text>Zaparkuj</Text>
           </View>
         </ScrollView>
       </View>
@@ -21,4 +21,4 @@ const StatisticsTopTab = () => {
   );
 };
 
-export default StatisticsTopTab;
+export default ParkTopTab;

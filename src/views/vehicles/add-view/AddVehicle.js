@@ -7,10 +7,11 @@ import {
   StyleSheet,
   Modal,
 } from 'react-native';
-// import axios from 'axios';
+import axios from 'axios';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import DatePicker from 'react-native-date-picker';
+import firestore from '@react-native-firebase/firestore';
 
 import HeaderBox from '../../../components/HeaderBox';
 import {appStyles} from '../../../styles/constants';
@@ -44,6 +45,7 @@ const AddVehicle = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [err, setErr] = useState('');
   const [date, setDate] = useState(new Date());
+  const [mess, setMess] = useState('');
   const {
     control,
     handleSubmit,
@@ -52,18 +54,55 @@ const AddVehicle = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = props => {
+
+  const resetFields = () => {
+    setDate(new Date());
+    resetField('registrationPlate');
+    resetField('vin');
+  };
+
+  const getVehicleData = async (registration_plate, vin, date_first_reg) => {
+    setMess('Dodawanie pojazdu...');
+    setModalVisible(true);
+    await axios
+      .get('http://api.deepit.pl:8000/api/vehicles', {
+        params: {
+          registration_plate: registration_plate,
+          vin: vin,
+          date_first_reg: date_first_reg,
+        },
+      })
+      .then(function (response) {
+        // console.log(response.data);
+        firestore()
+          .collection(`users/${user.uid}/vehicles`)
+          .add(response.data)
+          .then(() => {
+            setModalVisible(false);
+            resetFields();
+            setMess('Dodano!');
+            setModalVisible(true);
+            setTimeout(() => {
+              setModalVisible(false);
+            }, 1500);
+          });
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+  };
+
+  const onSubmit = ({dateFirstReg, registrationPlate, vin}) => {
     try {
-      console.log(props);
+      if (!dateFirstReg) {
+        dateFirstReg = new Date();
+      }
 
-      setModalVisible(true);
-      setTimeout(() => {
-        setModalVisible(false);
-      }, 1500);
-
-      setDate(new Date());
-      resetField('registrationPlate');
-      resetField('vin');
+      getVehicleData(
+        registrationPlate,
+        vin,
+        dateFirstReg.toLocaleDateString('pl'),
+      );
     } catch (e) {
       console.log(e);
 
@@ -156,7 +195,7 @@ const AddVehicle = () => {
                   styles.modalText,
                   !err ? {color: ADDITIONAL_COLORS.TEXT.GREEN} : null,
                 ]}>
-                {err ? `Wystąpił błąd! (${err})` : 'Pomyślnie dodano pojazd!'}
+                {err ? `Wystąpił błąd! (${err})` : mess}
               </Text>
             </View>
           </View>
