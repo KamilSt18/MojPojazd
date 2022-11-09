@@ -13,7 +13,7 @@ const Incident = () => {
       <View>
         <ScrollView>
           <View>
-            <Text>Niezbędnik kierowcy</Text>
+            <Text>Incydent</Text>
           </View>
         </ScrollView>
       </View>

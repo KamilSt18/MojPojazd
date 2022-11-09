@@ -1,14 +1,12 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState} from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {SafeAreaView, StyleSheet, View, Text} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
-import firestore from '@react-native-firebase/firestore';
 
 import {appStyles} from '../../../styles/constants';
-import {MAIN_COLORS} from '../../../styles/colors';
+import {ADDITIONAL_COLORS, MAIN_COLORS} from '../../../styles/colors';
 import {SCREENS} from '../../../navigation/constants';
 import HeaderBox from '../../../components/HeaderBox';
-import {AuthContext} from '../../../navigation/AuthProvider';
 
 import DetailsTopTab from './details-top-tab/DetailsTopTab';
 import AlertsTopTab from './alerts-top-tab/AlertsTopTab';
@@ -31,26 +29,8 @@ const styles = StyleSheet.create({
 
 const Tab = createMaterialTopTabNavigator();
 
-const ShowVehicles = ({update, setUpdate}) => {
-  const {user} = useContext(AuthContext);
+const ShowVehicles = ({counter, user, data}) => {
   const [selectedVehicle, setSelectedVehicle] = useState();
-  const [data, setData] = useState([]);
-  const [counter, setCounter] = useState(0);
-  useEffect(() => {
-    setData([]);
-    firestore()
-      .collection(`users/${user.uid}/vehicles`)
-      .get()
-      .then(collectionSnapshot => {
-        setCounter(collectionSnapshot.size);
-        collectionSnapshot.forEach(documentSnapshot => {
-          let data = documentSnapshot.data();
-          data['id'] = documentSnapshot.id;
-          setData(arr => [...arr, data]);
-          // setDidLoad(true);
-        });
-      });
-  }, [user.uid, update]);
 
   const pickers = data.map(vehicle => {
     let name = `${vehicle.Marka} ${vehicle.Model} ${vehicle['Rok produkcji']}`;
@@ -72,9 +52,49 @@ const ShowVehicles = ({update, setUpdate}) => {
           <Text style={styles.importantText}>pojazdów: {counter}</Text>.
         </Text>
       </View>
-      <View style={{flex: 1}}>
-        <HeaderBox title="Twoje pojazdy:" icon="car" />
+      <HeaderBox title="Twoje pojazdy:" icon="car" />
+      {Boolean(counter) ? (
+        <View style={{flex: 1}}>
+          <Picker
+            selectedValue={selectedVehicle}
+            onValueChange={(itemValue, itemIndex) => {
+              setSelectedVehicle(itemValue);
+            }}
+            dropdownIconColor={MAIN_COLORS.SECONDARY}
+            dropdownIconRippleColor={MAIN_COLORS.PRIMARY}
+            prompt="Wybierz pojazd"
+            style={styles.pickerStyles}>
+            {pickers}
+          </Picker>
 
+          <Tab.Navigator
+            screenOptions={{
+              tabBarLabelStyle: {fontSize: 12},
+              tabBarIndicatorStyle: {backgroundColor: MAIN_COLORS.ORANGE},
+            }}>
+            <Tab.Screen
+              name={SCREENS.HOME.VEHICLES.TOP_TAB_NAVIGATOR.DETAILS.ID}
+              children={() => (
+                <DetailsTopTab
+                  data={data.filter(el => el.id == selectedVehicle)}
+                />
+              )}
+            />
+            <Tab.Screen
+              name={SCREENS.HOME.VEHICLES.TOP_TAB_NAVIGATOR.EXPENSES.ID}
+              component={ExpensesTopTab}
+            />
+            <Tab.Screen
+              name={SCREENS.HOME.VEHICLES.TOP_TAB_NAVIGATOR.ALERTS.ID}
+              component={AlertsTopTab}
+            />
+            <Tab.Screen
+              name={SCREENS.HOME.VEHICLES.TOP_TAB_NAVIGATOR.PARK.ID}
+              component={ParkTopTab}
+            />
+          </Tab.Navigator>
+        </View>
+      ) : (
         <Picker
           selectedValue={selectedVehicle}
           onValueChange={(itemValue, itemIndex) => {
@@ -82,38 +102,13 @@ const ShowVehicles = ({update, setUpdate}) => {
           }}
           dropdownIconColor={MAIN_COLORS.SECONDARY}
           dropdownIconRippleColor={MAIN_COLORS.PRIMARY}
-          prompt="Wybierz pojazd"
           style={styles.pickerStyles}>
-          {pickers}
+          <Picker.Item
+            label="Brak dodanych pojazdów na koncie!"
+            enabled={false}
+          />
         </Picker>
-
-        <Tab.Navigator
-          screenOptions={{
-            tabBarLabelStyle: {fontSize: 12},
-            tabBarIndicatorStyle: {backgroundColor: MAIN_COLORS.ORANGE},
-          }}>
-          <Tab.Screen
-            name={SCREENS.HOME.VEHICLES.TOP_TAB_NAVIGATOR.DETAILS.ID}
-            children={() => (
-              <DetailsTopTab
-                data={data.filter(el => el.id == selectedVehicle)}
-              />
-            )}
-          />
-          <Tab.Screen
-            name={SCREENS.HOME.VEHICLES.TOP_TAB_NAVIGATOR.EXPENSES.ID}
-            component={ExpensesTopTab}
-          />
-          <Tab.Screen
-            name={SCREENS.HOME.VEHICLES.TOP_TAB_NAVIGATOR.ALERTS.ID}
-            component={AlertsTopTab}
-          />
-          <Tab.Screen
-            name={SCREENS.HOME.VEHICLES.TOP_TAB_NAVIGATOR.PARK.ID}
-            component={ParkTopTab}
-          />
-        </Tab.Navigator>
-      </View>
+      )}
     </SafeAreaView>
   );
 };

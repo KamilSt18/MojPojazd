@@ -74,6 +74,7 @@ const AddVehicle = ({setUpdate}) => {
       })
       .then(function (response) {
         if (!Object.keys(response.data).length) {
+          resetFields();
           throw 'Brak pojazdu w bazie!';
         }
         firestore()
