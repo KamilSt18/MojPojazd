@@ -1,6 +1,6 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {SafeAreaView, StyleSheet, View} from 'react-native';
+import {SafeAreaView, StyleSheet, View, Text} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import firestore from '@react-native-firebase/firestore';
 
@@ -21,31 +21,36 @@ const styles = StyleSheet.create({
     backgroundColor: MAIN_COLORS.ORANGE,
     color: MAIN_COLORS.SECONDARY,
   },
+  welcomeView: {
+    width: 250,
+    borderBottomEndRadius: 20,
+    borderTopEndRadius: 20,
+    marginVertical: 10,
+  },
 });
 
 const Tab = createMaterialTopTabNavigator();
 
-const ShowVehicles = () => {
+const ShowVehicles = ({update, setUpdate}) => {
   const {user} = useContext(AuthContext);
   const [selectedVehicle, setSelectedVehicle] = useState();
   const [data, setData] = useState([]);
-  const [didLoad, setDidLoad] = useState(false);
-
+  const [counter, setCounter] = useState(0);
   useEffect(() => {
-    if (!didLoad) {
-      firestore()
-        .collection(`users/${user.uid}/vehicles`)
-        .get()
-        .then(collectionSnapshot => {
-          collectionSnapshot.forEach(documentSnapshot => {
-            let data = documentSnapshot.data();
-            data['id'] = documentSnapshot.id;
-            setData(arr => [...arr, data]);
-            setDidLoad(true);
-          });
+    setData([]);
+    firestore()
+      .collection(`users/${user.uid}/vehicles`)
+      .get()
+      .then(collectionSnapshot => {
+        setCounter(collectionSnapshot.size);
+        collectionSnapshot.forEach(documentSnapshot => {
+          let data = documentSnapshot.data();
+          data['id'] = documentSnapshot.id;
+          setData(arr => [...arr, data]);
+          // setDidLoad(true);
         });
-    }
-  }, [didLoad, user.uid]);
+      });
+  }, [user.uid, update]);
 
   const pickers = data.map(vehicle => {
     let name = `${vehicle.Marka} ${vehicle.Model} ${vehicle['Rok produkcji']}`;
@@ -54,8 +59,21 @@ const ShowVehicles = () => {
 
   return (
     <SafeAreaView style={styles.root}>
+      <View style={[styles.section, styles.welcomeView]}>
+        <Text style={[styles.formatText, {fontSize: 18}, styles.shadowText]}>
+          Witaj,{' '}
+          <Text style={styles.importantText}>
+            {user.displayName ? user.displayName : user.email}
+          </Text>
+          !
+        </Text>
+        <Text style={[styles.formatText, styles.shadowText]}>
+          Liczba posiadanych{' '}
+          <Text style={styles.importantText}>pojazdów: {counter}</Text>.
+        </Text>
+      </View>
       <View style={{flex: 1}}>
-        <HeaderBox title="Twoje pojazdy:" />
+        <HeaderBox title="Twoje pojazdy:" icon="car" />
 
         <Picker
           selectedValue={selectedVehicle}

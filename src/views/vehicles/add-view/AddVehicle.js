@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const AddVehicle = () => {
+const AddVehicle = ({setUpdate}) => {
   const {user} = useContext(AuthContext);
   const [modalVisible, setModalVisible] = useState(false);
   const [err, setErr] = useState('');
@@ -65,7 +65,7 @@ const AddVehicle = () => {
     setMess('Dodawanie pojazdu...');
     setModalVisible(true);
     await axios
-      .get('http://api.deepit.pl:8000/api/vehicles', {
+      .get('https://api.deepit.pl:2053/api/vehicles', {
         params: {
           registration_plate: registration_plate,
           vin: vin,
@@ -73,7 +73,9 @@ const AddVehicle = () => {
         },
       })
       .then(function (response) {
-        // console.log(response.data);
+        if (!Object.keys(response.data).length) {
+          throw 'Brak pojazdu w bazie!';
+        }
         firestore()
           .collection(`users/${user.uid}/vehicles`)
           .add(response.data)
@@ -82,6 +84,9 @@ const AddVehicle = () => {
             resetFields();
             setMess('Dodano!');
             setModalVisible(true);
+
+            setUpdate(val => !val);
+
             setTimeout(() => {
               setModalVisible(false);
             }, 1500);
@@ -89,6 +94,13 @@ const AddVehicle = () => {
       })
       .catch(function (err) {
         console.log(err);
+
+        setErr(err);
+        setModalVisible(true);
+        setTimeout(() => {
+          setModalVisible(false);
+          setErr('');
+        }, 1500);
       });
   };
 

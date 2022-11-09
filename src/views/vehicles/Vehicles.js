@@ -1,5 +1,5 @@
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
-import React from 'react';
+import React, {useState} from 'react';
 import {Text, StyleSheet, SafeAreaView} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
   ...appStyles,
 });
 const Vehicles = () => {
+  const [update, setUpdate] = useState(false);
   return (
     <Tab.Navigator
       initialRouteName={SCREENS.HOME.VEHICLES.TAB_NAVIGATOR.SHOW_VEHICLES.ID}
@@ -26,7 +27,7 @@ const Vehicles = () => {
           tabBarIcon: ({color}) => <Icon name="eye" size={26} color={color} />,
         }}
         name={SCREENS.HOME.VEHICLES.TAB_NAVIGATOR.SHOW_VEHICLES.ID}
-        component={ShowVehicles}
+        children={() => <ShowVehicles update={update} setUpdate={setUpdate} />}
       />
       <Tab.Screen
         options={{
@@ -35,7 +36,7 @@ const Vehicles = () => {
           ),
         }}
         name={SCREENS.HOME.VEHICLES.TAB_NAVIGATOR.ADD_VEHICLE.ID}
-        component={AddVehicle}
+        children={() => <AddVehicle setUpdate={setUpdate} />}
       />
     </Tab.Navigator>
   );

@@ -10,7 +10,7 @@ import {View, StyleSheet, Linking} from 'react-native';
 import {SvgXml} from 'react-native-svg';
 
 import {SCREENS} from '../constants';
-import HomeView from '../../views/home/Home';
+// import HomeView from '../../views/home/Home';
 import MyAccount from '../../views/my-account/MyAccount';
 import Settings from '../../views/settings/Settings';
 import Vehicles from '../../views/vehicles/Vehicles';
@@ -77,7 +77,7 @@ function CustomDrawerContent(props) {
           <Icon size={23} name={'envelope'} color={MAIN_COLORS.PRIMARY} />
         )}
       />
-      <DrawerItem
+      {/* <DrawerItem
         label={`Zmień język (${lang})`}
         onPress={() => {
           handleChangeLanguage(
@@ -87,7 +87,7 @@ function CustomDrawerContent(props) {
         icon={({focused}) => (
           <Icon size={23} name={'globe'} color={MAIN_COLORS.PRIMARY} />
         )}
-      />
+      /> */}
     </DrawerContentScrollView>
   );
 }
@@ -118,7 +118,7 @@ const HomeDrawer = () => {
       }}>
       <Drawer.Screen
         name={SCREENS.HOME.DASHBOARD.ID}
-        component={HomeView}
+        component={Vehicles}
         options={{
           drawerIcon: () => (
             <Icon size={30} name={'home'} color={MAIN_COLORS.ORANGE} />
@@ -136,7 +136,7 @@ const HomeDrawer = () => {
         }}
       />
 
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name={SCREENS.HOME.VEHICLES.ID}
         component={Vehicles}
         options={{
@@ -144,7 +144,7 @@ const HomeDrawer = () => {
             <Icon size={25} name={'car'} color={MAIN_COLORS.ORANGE} />
           ),
         }}
-      />
+      /> */}
 
       <Drawer.Screen
         name={SCREENS.HOME.INCIDENT.ID}
