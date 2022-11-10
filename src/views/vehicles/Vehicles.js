@@ -65,7 +65,7 @@ const Vehicles = () => {
           ),
         }}
         name={SCREENS.HOME.VEHICLES.TAB_NAVIGATOR.ADD_VEHICLE.ID}
-        children={() => <AddVehicle setUpdate={setUpdate} />}
+        children={() => <AddVehicle setUpdate={setUpdate} data={data} />}
       />
     </Tab.Navigator>
   );

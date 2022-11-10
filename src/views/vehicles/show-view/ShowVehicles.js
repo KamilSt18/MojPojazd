@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 
 const Tab = createMaterialTopTabNavigator();
 
-const ShowVehicles = ({counter, user, data}) => {
+const ShowVehicles = ({counter, user, data, setUpdate}) => {
   const [selectedVehicle, setSelectedVehicle] = useState();
 
   const pickers = data.map(vehicle => {
@@ -49,7 +49,7 @@ const ShowVehicles = ({counter, user, data}) => {
         </Text>
         <Text style={[styles.formatText, styles.shadowText]}>
           Liczba posiadanych{' '}
-          <Text style={styles.importantText}>pojazdów: {counter}</Text>.
+          <Text style={styles.importantText}>pojazdów: {counter}</Text>
         </Text>
       </View>
       <HeaderBox title="Twoje pojazdy:" icon="car" />
@@ -77,6 +77,9 @@ const ShowVehicles = ({counter, user, data}) => {
               children={() => (
                 <DetailsTopTab
                   data={data.filter(el => el.id == selectedVehicle)}
+                  selectedVehicle={selectedVehicle}
+                  user={user}
+                  setUpdate={setUpdate}
                 />
               )}
             />

@@ -7,8 +7,8 @@ const styles = StyleSheet.create({
   ...appStyles,
 });
 
-const Box = ({children}) => {
-  return <View style={styles.section}>{children}</View>;
+const Box = ({children, marginVertical = null}) => {
+  return <View style={[styles.section, {marginVertical: marginVertical}]}>{children}</View>;
 };
 
 export default Box;

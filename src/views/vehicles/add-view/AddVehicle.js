@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const AddVehicle = ({setUpdate}) => {
+const AddVehicle = ({setUpdate, data}) => {
   const {user} = useContext(AuthContext);
   const [modalVisible, setModalVisible] = useState(false);
   const [err, setErr] = useState('');
@@ -77,9 +77,16 @@ const AddVehicle = ({setUpdate}) => {
           resetFields();
           throw 'Brak pojazdu w bazie!';
         }
+        if (JSON.stringify(data).includes(response.data.VIN.toUpperCase())) {
+          resetFields();
+          throw 'Pojazd jest już dodany!';
+        }
+        response.data['Numer rejestracyjny'] = registration_plate.toUpperCase();
+        response.data['Data pierwszej rejestracji'] = date_first_reg;
         firestore()
           .collection(`users/${user.uid}/vehicles`)
-          .add(response.data)
+          .doc(response.data.VIN)
+          .set(response.data)
           .then(() => {
             setModalVisible(false);
             resetFields();

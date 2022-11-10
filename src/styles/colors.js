@@ -3,6 +3,8 @@ export const MAIN_COLORS = {
   SECONDARY: '#FEF9F3',
   TERTIARY: '#FFCB57',
   ORANGE: '#ff964f',
+  GREEN: '#77dd77',
+  RED: '#ff6961',
 };
 
 export const ADDITIONAL_COLORS = {

@@ -26,9 +26,13 @@ const TextButton = ({
   TouchableOpacityProps = {},
   ViewProps = {},
   sign = false,
+  onPress = null,
 }) => {
   return (
-    <TouchableOpacity {...TouchableOpacityProps} activeOpacity={0.5}>
+    <TouchableOpacity
+      onPress={onPress}
+      {...TouchableOpacityProps}
+      activeOpacity={0.5}>
       <View style={[styles.container, ...ViewProps]}>
         <View />
         <Text style={styles.mainText}>{label}</Text>
