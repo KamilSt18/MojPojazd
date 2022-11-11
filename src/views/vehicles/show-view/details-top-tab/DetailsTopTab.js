@@ -157,12 +157,12 @@ const DetailsTopTab = ({data, selectedVehicle, user, setUpdate}) => {
                             `users/${user.uid}/vehicles`,
                             selectedVehicle,
                           );
-                          setUpdate(val => !val);
                           setMess('Usunięto!');
                           setModalVisible(true);
 
                           setTimeout(() => {
                             setModalVisible(false);
+                            setUpdate(val => !val);
                           }, 1500);
                         },
                       },

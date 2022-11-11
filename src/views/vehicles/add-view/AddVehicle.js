@@ -27,17 +27,6 @@ const styles = StyleSheet.create({
   addButton: {
     backgroundColor: MAIN_COLORS.PRIMARY,
   },
-  label: {
-    color: ADDITIONAL_COLORS.TEXT.BLACK,
-    fontSize: 17,
-    marginTop: 8,
-    fontWeight: '500',
-  },
-  actionContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginHorizontal: 25,
-  },
 });
 
 const AddVehicle = ({setUpdate, data}) => {
