@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   ...appStyles,
 });
 
-const TextBox = ({title, important = false}) => {
+const TextBox = ({title, important = false, children = null}) => {
   return (
     <Text
       style={[
@@ -16,6 +16,7 @@ const TextBox = ({title, important = false}) => {
         important && styles.importantText,
       ]}>
       {title}
+      {children}
     </Text>
   );
 };

@@ -2,7 +2,18 @@ import firestore from '@react-native-firebase/firestore';
 import axios from 'axios';
 
 export const firestoreDelete = (collection, doc) => {
-  firestore().collection(collection).doc(doc).delete();
+  return new Promise((resolve, reject) => {
+    firestore()
+      .collection(collection)
+      .doc(doc)
+      .delete()
+      .then(() => {
+        resolve('Usunięto dane!');
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
 };
 
 export const firestoreSet = (collection, doc, set) => {

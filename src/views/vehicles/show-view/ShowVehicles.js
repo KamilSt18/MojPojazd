@@ -4,7 +4,7 @@ import {SafeAreaView, StyleSheet, View, Text} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 
 import {appStyles} from '../../../styles/constants';
-import {ADDITIONAL_COLORS, MAIN_COLORS} from '../../../styles/colors';
+import {MAIN_COLORS} from '../../../styles/colors';
 import {SCREENS} from '../../../navigation/constants';
 import HeaderBox from '../../../components/HeaderBox';
 
@@ -89,7 +89,13 @@ const ShowVehicles = ({counter, user, data, setUpdate}) => {
             />
             <Tab.Screen
               name={SCREENS.HOME.VEHICLES.TOP_TAB_NAVIGATOR.ALERTS.ID}
-              component={AlertsTopTab}
+              children={() => (
+                <AlertsTopTab
+                  data={data.filter(el => el.id == selectedVehicle)}
+                  user={user}
+                  selectedVehicle={selectedVehicle}
+                />
+              )}
             />
             <Tab.Screen
               name={SCREENS.HOME.VEHICLES.TOP_TAB_NAVIGATOR.PARK.ID}
