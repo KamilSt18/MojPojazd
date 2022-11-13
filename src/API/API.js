@@ -46,6 +46,21 @@ export const firestoreUpdate = (collection, doc, update) => {
   });
 };
 
+export const firestoreGet = (collection, doc) => {
+  return new Promise((resolve, reject) => {
+    firestore()
+      .collection(collection)
+      .doc(doc)
+      .get()
+      .then(() => {
+        resolve('Popraw ta funkcje!');
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+};
+
 export const getVehicleData = async (
   registration_plate,
   vin,

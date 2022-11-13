@@ -3,11 +3,11 @@ import React from 'react';
 import Car from '../assets/img/car.png';
 import Bus from '../assets/img/bus.png';
 import Motorcycle from '../assets/img/motorcycle.png';
-import VehicleCard from '../components/VehicleCard';
+import Card from '../components/Card';
 
 export const MockupData = (
   <>
-    <VehicleCard
+    <Card
       img={Car}
       name="SKODA, 3U, SUPERB"
       operation="Tankowanie"
@@ -16,7 +16,7 @@ export const MockupData = (
       VIN="VF73A9HC8DJ819035"
       date="04.11.2022 10:28"
     />
-    <VehicleCard
+    <Card
       img={Bus}
       name="SKODA, 3U, SUPERB"
       operation="Naprawa"
@@ -25,7 +25,7 @@ export const MockupData = (
       VIN="VF73A9HC8DJ819035"
       date="03.11.2022 10:28"
     />
-    <VehicleCard
+    <Card
       img={Motorcycle}
       name="SKODA, 3U, SUPERB"
       operation="Ubezpieczenie"
@@ -34,7 +34,7 @@ export const MockupData = (
       VIN="VF73A9HC8DJ819035"
       date="02.11.2022 10:28"
     />
-    <VehicleCard
+    <Card
       img={Car}
       name="SKODA, 3U, SUPERB"
       operation="Serwis"
@@ -43,7 +43,7 @@ export const MockupData = (
       VIN="VF73A9HC8DJ819035"
       date="01.11.2022 10:28"
     />
-    <VehicleCard
+    <Card
       img={Motorcycle}
       name="SKODA, 3U, SUPERB"
       operation="Ubezpieczenie"
@@ -52,7 +52,7 @@ export const MockupData = (
       VIN="VF73A9HC8DJ819035"
       date="01.11.2022 10:28"
     />
-    <VehicleCard
+    <Card
       img={Bus}
       name="SKODA, 3U, SUPERB"
       operation="Naprawa"

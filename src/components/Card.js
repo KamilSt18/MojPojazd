@@ -38,17 +38,16 @@ const styles = StyleSheet.create({
   carDateText: {textAlign: 'right', marginTop: 5, fontSize: 10},
 });
 
-const VehicleCard = ({
+const Card = ({
   name,
   img,
   operation = null,
-  brand = null,
-  model = null,
-  VIN = null,
+  field1 = null,
+  field2 = null,
   date = null,
 }) => {
   return (
-    <View style={styles.section}>
+    <View style={[styles.section, {marginTop: 10}]}>
       <View style={styles.cardInfoCar}>
         <View style={styles.vehicleLogoView}>
           <Image source={img} style={styles.carImage} />
@@ -63,19 +62,16 @@ const VehicleCard = ({
             <Text style={styles.importantText}>{name}</Text>
             {operation && `: ${operation}`}
           </Text>
-          {brand && (
+          {field1 && (
             <Text style={[styles.carDetailsText, styles.shadowText]}>
-              Marka: <Text style={styles.carDetailsColorText}>{brand}</Text>
+              Długość geograficzna:{' '}
+              <Text style={styles.carDetailsColorText}>{field1}</Text>
             </Text>
           )}
-          {model && (
+          {field2 && (
             <Text style={[styles.carDetailsText, styles.shadowText]}>
-              Model: <Text style={styles.carDetailsColorText}>{model}</Text>
-            </Text>
-          )}
-          {VIN && (
-            <Text style={[styles.carDetailsText, styles.shadowText]}>
-              VIN: <Text style={styles.carDetailsColorText}>{VIN}</Text>
+              Szerokość geograficzna:{' '}
+              <Text style={styles.carDetailsColorText}>{field2}</Text>
             </Text>
           )}
           {date && (
@@ -89,4 +85,4 @@ const VehicleCard = ({
   );
 };
 
-export default VehicleCard;
+export default Card;

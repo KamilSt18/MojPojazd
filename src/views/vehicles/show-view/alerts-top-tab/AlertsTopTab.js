@@ -200,7 +200,7 @@ const AlertsTopTab = ({data, user, selectedVehicle}) => {
         <ScrollView>
           <Box marginVertical={0}>
             <TextBox title="Sekcja pozwala na ustawienie">
-              <TextBox title=" powiadomienia push " important={true} />
+              <TextBox title=" powiadomienia push" important={true} />
               <TextBox title=" na "/>
               <TextBox title="tydzień " important={true} />
               <TextBox title="przed upływem terminu przeglądu i/lub ubezpieczenia." />

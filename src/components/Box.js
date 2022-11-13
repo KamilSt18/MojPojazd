@@ -7,8 +7,17 @@ const styles = StyleSheet.create({
   ...appStyles,
 });
 
-const Box = ({children, marginVertical = null, margin = null}) => {
-  return <View style={[styles.section, {marginVertical: marginVertical, margin}]}>{children}</View>;
+const Box = ({
+  children,
+  marginVertical = null,
+  margin = null,
+  marginTop = null,
+}) => {
+  return (
+    <View style={[styles.section, {marginVertical, margin, marginTop}]}>
+      {children}
+    </View>
+  );
 };
 
 export default Box;

@@ -95,8 +95,19 @@ const DetailsTopTab = ({data, selectedVehicle, user, setUpdate}) => {
     <SafeAreaView style={styles.root}>
       <View>
         <ScrollView>
+          <Box marginVertical={0}>
+            <TextBox title="Dane zostały pobrane z">
+              <TextBox
+                title=" Centralnej Ewidencji Pojazdów"
+                important={true}
+              />
+              <TextBox title=", które są dostępne pod adresem" />
+              <TextBox title=" historiapojazdu.gov.pl" important={true} />
+              <TextBox title="." />
+            </TextBox>
+          </Box>
           {/* <HeaderBox title="Szczegóły o pojezdzie" /> */}
-          <Box marginVertical={0}>{textBoxes}</Box>
+          <Box marginTop={15}>{textBoxes}</Box>
           <View style={styles.buttonsView}>
             <TextButton
               label={'Odśwież'}
