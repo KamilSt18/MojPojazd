@@ -14,6 +14,7 @@ import {SCREENS} from '../constants';
 import MyAccount from '../../views/my-account/MyAccount';
 import Settings from '../../views/settings/Settings';
 import Vehicles from '../../views/vehicles/Vehicles';
+import PrivacyPolicies from '../../views/privacy-policies/PrivacyPolicies';
 import DrivingEssentials from '../../views/driving-essentials/DrivingEssentials';
 import Incident from '../../views/incident/Incident';
 
@@ -52,22 +53,7 @@ function CustomDrawerContent(props) {
       <View style={styles.hrContainer}>
         <View style={styles.hr} />
       </View>
-      <DrawerItem
-        label="Wyloguj się"
-        onPress={() => {
-          logout();
-        }}
-        icon={({focused}) => (
-          <Icon size={23} name={'sign-out'} color={MAIN_COLORS.PRIMARY} />
-        )}
-      />
-      <DrawerItem
-        label="Prywatność i zasady"
-        onPress={() => alert('Polityka prywatności')}
-        icon={({focused}) => (
-          <Icon size={30} name={'lock'} color={MAIN_COLORS.PRIMARY} />
-        )}
-      />
+
       <DrawerItem
         label="Kontakt"
         onPress={() => {
@@ -75,6 +61,16 @@ function CustomDrawerContent(props) {
         }}
         icon={({focused}) => (
           <Icon size={23} name={'envelope'} color={MAIN_COLORS.PRIMARY} />
+        )}
+      />
+
+      <DrawerItem
+        label="Wyloguj się"
+        onPress={() => {
+          logout();
+        }}
+        icon={({focused}) => (
+          <Icon size={23} name={'sign-out'} color={MAIN_COLORS.PRIMARY} />
         )}
       />
       {/* <DrawerItem
@@ -166,6 +162,16 @@ const HomeDrawer = () => {
         options={{
           drawerIcon: () => (
             <Icon size={30} name={'book'} color={MAIN_COLORS.ORANGE} />
+          ),
+        }}
+      />
+
+      <Drawer.Screen
+        name="Prywatność i zasady"
+        component={PrivacyPolicies}
+        options={{
+          drawerIcon: () => (
+            <Icon size={30} name={'lock'} color={MAIN_COLORS.ORANGE} />
           ),
         }}
       />
