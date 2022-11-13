@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   rowItem: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginTop: 15,
+    marginTop: 30,
   },
 });
 
@@ -198,7 +198,7 @@ const AlertsTopTab = ({data, user, selectedVehicle}) => {
     <SafeAreaView style={styles.root}>
       <View>
         <ScrollView>
-          <Box marginVertical={15}>
+          <Box marginVertical={0}>
             <TextBox title="Sekcja pozwala na ustawienie">
               <TextBox title=" powiadomienia push " important={true} />
               <TextBox title=" na "/>

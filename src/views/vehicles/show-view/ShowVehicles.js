@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {SafeAreaView, StyleSheet, View, Text} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
+import {FloatingAction} from 'react-native-floating-action';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {appStyles} from '../../../styles/constants';
 import {MAIN_COLORS} from '../../../styles/colors';
@@ -30,6 +32,28 @@ const styles = StyleSheet.create({
 const Tab = createMaterialTopTabNavigator();
 
 const ShowVehicles = ({counter, user, data, setUpdate}) => {
+  const mapMarkerIcon = (
+    <Icon name="map-marker" size={18} color={MAIN_COLORS.SECONDARY} />
+  );
+  const removeIcon = (
+    <Icon name="remove" size={18} color={MAIN_COLORS.SECONDARY} />
+  );
+  const actions = [
+    {
+      text: 'Dodaj lokalizację',
+      icon: mapMarkerIcon,
+      name: 'bt_add',
+      position: 1,
+      color: MAIN_COLORS.ORANGE,
+    },
+    {
+      text: 'Usuń lokalizację',
+      icon: removeIcon,
+      name: 'bt_rem',
+      position: 2,
+      color: MAIN_COLORS.ORANGE,
+    },
+  ];
   const [selectedVehicle, setSelectedVehicle] = useState();
 
   const pickers = data.map(vehicle => {
@@ -99,7 +123,20 @@ const ShowVehicles = ({counter, user, data, setUpdate}) => {
             />
             <Tab.Screen
               name={SCREENS.HOME.VEHICLES.TOP_TAB_NAVIGATOR.PARK.ID}
-              component={ParkTopTab}
+              children={() => {
+                return (
+                  <>
+                    <ParkTopTab />
+                    <FloatingAction
+                      color={MAIN_COLORS.PRIMARY}
+                      actions={actions}
+                      onPressItem={name => {
+                        console.log(`selected button: ${name}`);
+                      }}
+                    />
+                  </>
+                );
+              }}
             />
           </Tab.Navigator>
         </View>
