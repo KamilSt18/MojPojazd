@@ -34,15 +34,17 @@ const ParkTopTab = ({
   useEffect(() => {
     firestore()
       .collection(`users/${user.uid}/locations`)
+      .doc(selectedVehicle)
       .get()
-      .then(collectionSnapshot => {
-        collectionSnapshot.forEach(documentSnapshot => {
+      .then(documentSnapshot => {
+        // console.log('User exists: ', documentSnapshot.exists);
+
+        if (documentSnapshot.exists) {
           let data = documentSnapshot.data();
           setParkData(data);
-        });
-      })
-      .catch(err => {
-        console.log(err);
+        } else {
+          setParkData(null);
+        }
       });
   }, [selectedVehicle, updateParkTopTab]);
   const openGps = (lat, lng) => {

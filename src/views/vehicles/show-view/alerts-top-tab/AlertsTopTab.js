@@ -48,6 +48,11 @@ const AlertsTopTab = ({data, user, selectedVehicle}) => {
   const [dateVehicleInsuranceDate, setDateVehicleInsuranceDate] = useState();
 
   useEffect(() => {
+    // Reset
+    setIsEnabledVehicleInspectionDate(false);
+    setIsEnabledVehicleInsuranceDate(false);
+    setDateVehicleInspectionDate(null);
+    setDateVehicleInsuranceDate(null);
     // Przegląd
     firestore()
       .collection(`users/${user.uid}/alerts`)
@@ -201,7 +206,7 @@ const AlertsTopTab = ({data, user, selectedVehicle}) => {
           <Box marginVertical={0}>
             <TextBox title="Sekcja pozwala na ustawienie">
               <TextBox title=" powiadomienia push" important={true} />
-              <TextBox title=" na "/>
+              <TextBox title=" na " />
               <TextBox title="tydzień " important={true} />
               <TextBox title="przed upływem terminu przeglądu i/lub ubezpieczenia." />
             </TextBox>
