@@ -74,4 +74,9 @@ export const appStyles = {
     justifyContent: 'space-between',
     marginHorizontal: 25,
   },
+  buttonsView: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
+  },
 };

@@ -116,7 +116,7 @@ const AlertsTopTab = ({data, user, selectedVehicle}) => {
         Notifications.schduleNotification(
           alertVehicleInspectionDate,
           '🔔 Przegląd techniczny',
-          `${name} traci ważność przeglądu za tydzień!`,
+          `${name} wkrótce traci ważność przeglądu!`,
           '0',
         );
       } else {
@@ -160,7 +160,7 @@ const AlertsTopTab = ({data, user, selectedVehicle}) => {
         Notifications.schduleNotification(
           alertVehicleInsuranceDate,
           '🔔 Ubezpieczenie',
-          `${name} traci ważność ubezpieczenia za tydzień!`,
+          `${name} wkrótce traci ważność ubezpieczenia!`,
           '0',
         );
       } else {

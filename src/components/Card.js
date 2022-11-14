@@ -44,6 +44,7 @@ const Card = ({
   operation = null,
   field1 = null,
   field2 = null,
+  cost = null,
   date = null,
 }) => {
   return (
@@ -59,7 +60,10 @@ const Card = ({
               styles.carHeaderText,
               styles.shadowText,
             ]}>
-            <Text style={styles.importantText}>{name}</Text>
+            <Text style={styles.importantText}>
+              {cost && 'WYDATEK: '}
+              {name}
+            </Text>
             {operation && `: ${operation}`}
           </Text>
           {field1 && (
@@ -72,6 +76,11 @@ const Card = ({
             <Text style={[styles.carDetailsText, styles.shadowText]}>
               Szerokość geograficzna:{' '}
               <Text style={styles.carDetailsColorText}>{field2}</Text>
+            </Text>
+          )}
+          {cost && (
+            <Text style={[styles.carDetailsText, styles.shadowText, {fontSize: 16}]}>
+              Koszt: <Text style={[styles.carDetailsColorText, {fontSize: 16}]}>{cost} zł</Text>
             </Text>
           )}
           {date && (

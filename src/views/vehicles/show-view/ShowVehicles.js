@@ -1,14 +1,6 @@
 import React, {useState} from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  Text,
-  Platform,
-  Linking,
-  Modal,
-} from 'react-native';
+import {SafeAreaView, StyleSheet, View, Text, Modal, Alert} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import {FloatingAction} from 'react-native-floating-action';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -44,8 +36,11 @@ const styles = StyleSheet.create({
 const Tab = createMaterialTopTabNavigator();
 
 const ShowVehicles = ({counter, user, data, setUpdate}) => {
+  const [displayAddExpenses, setDisplayAddExpenses] = useState(false);
   const [updateParkTopTab, setUpdateParkTopTab] = useState(false);
+  const [updateExpensesTopTab, setUpdateExpensesTopTab] = useState(false);
   const [parkData, setParkData] = useState(null);
+  const [expensesData, setExpensesData] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [err, setErr] = useState('');
   const [mess, setMess] = useState('');
@@ -55,6 +50,9 @@ const ShowVehicles = ({counter, user, data, setUpdate}) => {
   );
   const removeIcon = (
     <Icon name="remove" size={18} color={MAIN_COLORS.SECONDARY} />
+  );
+  const addExpensesIcon = (
+    <Icon name="dollar" size={18} color={MAIN_COLORS.SECONDARY} />
   );
   const actions = [
     {
@@ -68,6 +66,22 @@ const ShowVehicles = ({counter, user, data, setUpdate}) => {
       text: 'Usuń lokalizację',
       icon: removeIcon,
       name: 'bt_rem',
+      position: 2,
+      color: MAIN_COLORS.ORANGE,
+    },
+  ];
+  const actionsExpenses = [
+    {
+      text: 'Dodaj wydatek',
+      icon: addExpensesIcon,
+      name: 'bt_add_expenses',
+      position: 1,
+      color: MAIN_COLORS.ORANGE,
+    },
+    {
+      text: 'Resetuj',
+      icon: removeIcon,
+      name: 'bt_rem_expenses',
       position: 2,
       color: MAIN_COLORS.ORANGE,
     },
@@ -126,7 +140,82 @@ const ShowVehicles = ({counter, user, data, setUpdate}) => {
             />
             <Tab.Screen
               name={SCREENS.HOME.VEHICLES.TOP_TAB_NAVIGATOR.EXPENSES.ID}
-              component={ExpensesTopTab}
+              children={() => (
+                <>
+                  <ExpensesTopTab
+                    displayAddExpenses={displayAddExpenses}
+                    setDisplayAddExpenses={setDisplayAddExpenses}
+                    user={user}
+                    selectedVehicle={selectedVehicle}
+                    updateExpensesTopTab={updateExpensesTopTab}
+                    setUpdateExpensesTopTab={setUpdateExpensesTopTab}
+                    expensesData={expensesData}
+                    setExpensesData={setExpensesData}
+                    modalVisible={modalVisible}
+                    setModalVisible={setModalVisible}
+                    mess={mess}
+                    setMess={setMess}
+                  />
+                  <FloatingAction
+                    color={MAIN_COLORS.ORANGE}
+                    actions={actionsExpenses}
+                    onPressItem={name => {
+                      if (name == 'bt_add_expenses') {
+                        setDisplayAddExpenses(true);
+                      } else if (name == 'bt_rem_expenses') {
+                        Alert.alert(
+                          'Usuwanie wydatków',
+                          'Czy na pewno chcesz usunąć historię wydatków?',
+                          [
+                            {
+                              text: 'Nie',
+                              onPress: () => {},
+                              style: 'cancel',
+                            },
+                            {
+                              text: 'Tak',
+                              onPress: () => {
+                                firestore()
+                                  .collection(`users/${user.uid}/expenses`)
+                                  .doc(selectedVehicle)
+                                  .collection('expense')
+                                  .get()
+                                  .then(querySnapshot => {
+                                    Promise.all(
+                                      querySnapshot.docs.map(d =>
+                                        d.ref.delete(),
+                                      ),
+                                    );
+                                    setExpensesData(false);
+                                    setUpdateExpensesTopTab(val => !val);
+                                    // console.log('Usunieto dane!');
+                                  })
+                                  .catch(err => {
+                                    setErr(err);
+                                    setModalVisible(true);
+                                    setTimeout(() => {
+                                      setModalVisible(false);
+                                      setErr('');
+                                    }, 1500);
+                                    console.log(err);
+                                  });
+
+                                setMess('Usunięto!');
+                                setModalVisible(true);
+
+                                setTimeout(() => {
+                                  setModalVisible(false);
+                                  setUpdate(val => !val);
+                                }, 1500);
+                              },
+                            },
+                          ],
+                        );
+                      }
+                    }}
+                  />
+                </>
+              )}
             />
             <Tab.Screen
               name={SCREENS.HOME.VEHICLES.TOP_TAB_NAVIGATOR.ALERTS.ID}
@@ -160,14 +249,12 @@ const ShowVehicles = ({counter, user, data, setUpdate}) => {
                             timeout: 15000,
                           })
                             .then(location => {
-                              // console.log(location);
                               firestoreSet(
                                 `users/${user.uid}/locations`,
                                 selectedVehicle,
                                 location,
                               )
                                 .then(() => {
-                                  // console.log('Ustawiono dane!');
                                   setMess('Zaaktualizowano!');
                                   setModalVisible(true);
                                   setTimeout(() => {
@@ -178,9 +265,6 @@ const ShowVehicles = ({counter, user, data, setUpdate}) => {
                                 .catch(err => {
                                   console.log(err);
                                 });
-                              // const dateLocation = new Date(location.time);
-                              // console.log(dateLocation.toLocaleString('pl'));
-                              // openGps(location.latitude, location.longitude);
                             })
                             .catch(error => {
                               setErr(error);
@@ -217,7 +301,6 @@ const ShowVehicles = ({counter, user, data, setUpdate}) => {
                               console.log(err);
                             });
                         }
-                        // console.log(`selected button: ${name}`);
                       }}
                     />
                   </>

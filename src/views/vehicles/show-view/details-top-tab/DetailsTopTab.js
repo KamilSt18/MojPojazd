@@ -36,11 +36,6 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     marginVertical: 12,
   },
-  buttonsView: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: '100%',
-  },
 });
 
 const DetailsTopTab = ({data, selectedVehicle, user, setUpdate}) => {
