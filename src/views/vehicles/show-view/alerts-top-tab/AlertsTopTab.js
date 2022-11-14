@@ -96,11 +96,13 @@ const AlertsTopTab = ({data, user, selectedVehicle}) => {
     // Notifications.schduleNotification(new Date(Date.now() + 5 * 1000));
     try {
       let name = `${data[0].Marka} ${data[0].Model} ${data[0]['Rok produkcji']}`;
+      var dateOffset = 24 * 60 * 60 * 1000 * 7; //7 days
+
       if (dateVehicleInspectionDate) {
         // Tydzien przed
         let alertVehicleInspectionDate = new Date();
-        alertVehicleInspectionDate.setDate(
-          alertVehicleInspectionDate.getDate() - 7,
+        alertVehicleInspectionDate.setTime(
+          dateVehicleInspectionDate.getTime() - dateOffset,
         );
         firestore()
           .collection(`users/${user.uid}/alerts`)
@@ -143,8 +145,8 @@ const AlertsTopTab = ({data, user, selectedVehicle}) => {
       if (dateVehicleInsuranceDate) {
         // Tydzien przed
         let alertVehicleInsuranceDate = new Date();
-        alertVehicleInsuranceDate.setDate(
-          dateVehicleInsuranceDate.getDate() - 7,
+        alertVehicleInsuranceDate.setTime(
+          dateVehicleInsuranceDate.getTime() - dateOffset,
         );
         firestore()
           .collection(`users/${user.uid}/alerts`)
