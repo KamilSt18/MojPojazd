@@ -15,19 +15,19 @@ const styles = StyleSheet.create({
   headerText: {textAlign: 'center', marginHorizontal: 10},
 });
 
-const HeaderBox = ({title, icon = null}) => {
+const HeaderBox = ({title, icon = null, fontSize = 15}) => {
   return (
     <View style={styles.section}>
       <View style={styles.headerContainer}>
         {icon && (
           <Icon
-            size={18}
+            size={fontSize}
             name={icon}
             color={ADDITIONAL_COLORS.TEXT.PARMESEAN}
             style={styles.icon}
           />
         )}
-        <Text style={[styles.formatText, styles.shadowText, styles.headerText]}>
+        <Text style={[[styles.formatText, styles.shadowText, styles.headerText, {fontSize}]]}>
           {title}
         </Text>
       </View>
