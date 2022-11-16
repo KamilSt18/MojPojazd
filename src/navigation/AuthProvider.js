@@ -7,6 +7,7 @@ export const AuthProvider = ({children}) => {
   const [user, setUser] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [err, setErr] = useState('');
+  const [afterLogin, setAfterLogin] = useState(false);
 
   return (
     <AuthContext.Provider
@@ -16,9 +17,12 @@ export const AuthProvider = ({children}) => {
         setModalVisible,
         user,
         setUser,
+        afterLogin,
+        setAfterLogin,
         login: async (email, password, resetField) => {
           try {
             await auth().signInWithEmailAndPassword(email, password);
+            setAfterLogin(true);
           } catch (e) {
             console.log(e);
 

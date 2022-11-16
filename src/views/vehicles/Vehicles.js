@@ -3,6 +3,7 @@ import React, {useState, useEffect, useContext} from 'react';
 import {StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import firestore from '@react-native-firebase/firestore';
+import SplashScreen from 'react-native-splash-screen';
 
 import {appStyles} from '../../styles/constants';
 import AddVehicle from './add-view/AddVehicle';
@@ -17,11 +18,12 @@ const styles = StyleSheet.create({
   ...appStyles,
 });
 const Vehicles = () => {
-  const {user} = useContext(AuthContext);
+  const {user, afterLogin, setAfterLogin} = useContext(AuthContext);
   const [update, setUpdate] = useState(false);
   const [counter, setCounter] = useState(0);
   const [data, setData] = useState([]);
   useEffect(() => {
+    !afterLogin && SplashScreen.show();
     setData([]);
     firestore()
       .collection(`users/${user.uid}/vehicles`)
@@ -34,6 +36,10 @@ const Vehicles = () => {
           setData(arr => [...arr, data]);
         });
       });
+    setTimeout(() => {
+      !afterLogin && SplashScreen.hide();
+    }, 2500);
+    setAfterLogin(false);
   }, [user.uid, update]);
   return (
     <Tab.Navigator
