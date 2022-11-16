@@ -36,11 +36,15 @@ export const SCREENS = {
         PARK: {ID: 'Zaparkuj'},
       },
     },
-    DRIVING_ESSENTIALS: {
-      ID: 'Niezbędnik kierowcy',
-    },
     INCIDENT: {
       ID: 'Incydent',
+      TAB_NAVIGATOR: {
+        QA: {ID: 'Procedury'},
+        ACTIONS: {ID: 'Pomoc'},
+      },
+    },
+    DRIVING_ESSENTIALS: {
+      ID: 'Niezbędnik kierowcy',
     },
   },
 };

@@ -63,6 +63,7 @@ export const appStyles = {
     fontWeight: 'bold',
     color: ADDITIONAL_COLORS.TEXT.PARMESEAN,
   },
+  boldText: {fontWeight: 'bold'},
   label: {
     color: ADDITIONAL_COLORS.TEXT.BLACK,
     fontSize: 17,

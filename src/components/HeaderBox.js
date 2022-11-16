@@ -15,9 +15,14 @@ const styles = StyleSheet.create({
   headerText: {textAlign: 'center', marginHorizontal: 10},
 });
 
-const HeaderBox = ({title, icon = null, fontSize = 15}) => {
+const HeaderBox = ({
+  title,
+  icon = null,
+  fontSize = 15,
+  marginVertical = null,
+}) => {
   return (
-    <View style={styles.section}>
+    <View style={[styles.section, {marginVertical}]}>
       <View style={styles.headerContainer}>
         {icon && (
           <Icon
@@ -27,7 +32,15 @@ const HeaderBox = ({title, icon = null, fontSize = 15}) => {
             style={styles.icon}
           />
         )}
-        <Text style={[[styles.formatText, styles.shadowText, styles.headerText, {fontSize}]]}>
+        <Text
+          style={[
+            [
+              styles.formatText,
+              styles.shadowText,
+              styles.headerText,
+              {fontSize},
+            ],
+          ]}>
           {title}
         </Text>
       </View>

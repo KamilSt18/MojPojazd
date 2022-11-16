@@ -12,7 +12,7 @@ import {SvgXml} from 'react-native-svg';
 import {SCREENS} from '../constants';
 // import HomeView from '../../views/home/Home';
 import MyAccount from '../../views/my-account/MyAccount';
-import Settings from '../../views/settings/Settings';
+// import Settings from '../../views/settings/Settings';
 import Vehicles from '../../views/vehicles/Vehicles';
 import PrivacyPolicies from '../../views/privacy-policies/PrivacyPolicies';
 import DrivingEssentials from '../../views/driving-essentials/DrivingEssentials';
@@ -176,7 +176,7 @@ const HomeDrawer = () => {
         }}
       />
 
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name={SCREENS.HOME.SETTINGS.ID}
         component={Settings}
         options={{
@@ -184,7 +184,7 @@ const HomeDrawer = () => {
             <Icon size={30} name={'gear'} color={MAIN_COLORS.ORANGE} />
           ),
         }}
-      />
+      /> */}
     </Drawer.Navigator>
   );
 };
