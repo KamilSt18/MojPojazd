@@ -34,12 +34,10 @@ const HeaderBox = ({
         )}
         <Text
           style={[
-            [
-              styles.formatText,
-              styles.shadowText,
-              styles.headerText,
-              {fontSize},
-            ],
+            styles.formatText,
+            styles.shadowText,
+            styles.headerText,
+            {fontSize},
           ]}>
           {title}
         </Text>

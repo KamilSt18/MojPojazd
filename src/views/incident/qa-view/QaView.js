@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
   bodyView: {padding: 10},
   titleIncidentCard: {
     color: MAIN_COLORS.SECONDARY,
-    // marginVertical: 10,
     fontSize: 16,
     fontWeight: 'bold',
   },

@@ -8,7 +8,6 @@ export const appStyles = {
     color: ADDITIONAL_COLORS.TEXT.GLOBAL,
   },
   section: {
-    // flex: 1,
     justifyContent: 'center',
     alignContent: 'center',
     backgroundColor: MAIN_COLORS.PRIMARY,
@@ -57,7 +56,6 @@ export const appStyles = {
   formatText: {
     color: MAIN_COLORS.SECONDARY,
     fontSize: 15,
-    // fontWeight: '500',
   },
   importantText: {
     fontWeight: 'bold',

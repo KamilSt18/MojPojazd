@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  SafeAreaView,
-} from 'react-native';
+import {View, StyleSheet, SafeAreaView} from 'react-native';
 
 import {appStyles} from '../../styles/constants';
 import CardImg from '../../components/CardImg';

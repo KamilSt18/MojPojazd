@@ -1,7 +1,4 @@
 import * as colors from './colors';
 import * as constants from './constants';
-import * as mixins from './mixins';
-import * as spacing from './spacing';
-import * as typography from './typography';
 
-export {colors, constants, mixins, spacing, typography};
+export {colors, constants};

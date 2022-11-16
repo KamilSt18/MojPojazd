@@ -13,9 +13,6 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     marginEnd: 4,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // flex: 1,
   },
   carInfoView: {
     padding: 3,
@@ -79,8 +76,16 @@ const Card = ({
             </Text>
           )}
           {cost && (
-            <Text style={[styles.carDetailsText, styles.shadowText, {fontSize: 16}]}>
-              Koszt: <Text style={[styles.carDetailsColorText, {fontSize: 16}]}>{cost} zł</Text>
+            <Text
+              style={[
+                styles.carDetailsText,
+                styles.shadowText,
+                {fontSize: 16},
+              ]}>
+              Koszt:{' '}
+              <Text style={[styles.carDetailsColorText, {fontSize: 16}]}>
+                {cost} zł
+              </Text>
             </Text>
           )}
           {date && (

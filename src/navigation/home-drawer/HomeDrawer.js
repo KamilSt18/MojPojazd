@@ -10,9 +10,7 @@ import {View, StyleSheet, Linking} from 'react-native';
 import {SvgXml} from 'react-native-svg';
 
 import {SCREENS} from '../constants';
-// import HomeView from '../../views/home/Home';
 import MyAccount from '../../views/my-account/MyAccount';
-// import Settings from '../../views/settings/Settings';
 import Vehicles from '../../views/vehicles/Vehicles';
 import PrivacyPolicies from '../../views/privacy-policies/PrivacyPolicies';
 import DrivingEssentials from '../../views/driving-essentials/DrivingEssentials';
@@ -20,8 +18,8 @@ import Incident from '../../views/incident/Incident';
 
 import {MAIN_COLORS, ADDITIONAL_COLORS} from '../../styles/colors';
 import logoNew from '../../assets/img/logo.svg';
-import {LangContext} from '../../lang/LangProvider';
-import {LANGUAGES} from '../../lang/constants';
+// import {LangContext} from '../../lang/LangProvider';
+// import {LANGUAGES} from '../../lang/constants';
 import {AuthContext} from '../AuthProvider';
 
 const Drawer = createDrawerNavigator();
@@ -36,11 +34,10 @@ const styles = StyleSheet.create({
   contentContainer: {flexGrow: 1, justifyContent: 'center', marginVertical: 30},
   logoSection: {
     alignItems: 'center',
-    // marginTop: -20,
   },
 });
 function CustomDrawerContent(props) {
-  const [lang, handleChangeLanguage] = useContext(LangContext);
+  // const [lang, handleChangeLanguage] = useContext(LangContext);
   const {logout} = useContext(AuthContext);
   return (
     <DrawerContentScrollView
@@ -59,7 +56,7 @@ function CustomDrawerContent(props) {
         onPress={() => {
           Linking.openURL('mailto:kamilst18@gmail.com');
         }}
-        icon={({focused}) => (
+        icon={() => (
           <Icon size={23} name={'envelope'} color={MAIN_COLORS.PRIMARY} />
         )}
       />
@@ -69,7 +66,7 @@ function CustomDrawerContent(props) {
         onPress={() => {
           logout();
         }}
-        icon={({focused}) => (
+        icon={() => (
           <Icon size={23} name={'sign-out'} color={MAIN_COLORS.PRIMARY} />
         )}
       />
@@ -80,7 +77,7 @@ function CustomDrawerContent(props) {
             lang === LANGUAGES.PL ? LANGUAGES.ENG : LANGUAGES.PL,
           );
         }}
-        icon={({focused}) => (
+        icon={() => (
           <Icon size={23} name={'globe'} color={MAIN_COLORS.PRIMARY} />
         )}
       /> */}
@@ -97,7 +94,6 @@ const HomeDrawer = () => {
       screenOptions={{
         drawerStyle: {
           backgroundColor: MAIN_COLORS.SECONDARY,
-          // width: 300,
         },
         drawerActiveTintColor: MAIN_COLORS.ORANGE,
         headerStyle: {
@@ -109,7 +105,6 @@ const HomeDrawer = () => {
           color: MAIN_COLORS.SECONDARY,
           fontSize: 22,
         },
-        // headerTitleAlign: 'center',
         headerTintColor: MAIN_COLORS.SECONDARY,
       }}>
       <Drawer.Screen
@@ -131,16 +126,6 @@ const HomeDrawer = () => {
           ),
         }}
       />
-
-      {/* <Drawer.Screen
-        name={SCREENS.HOME.VEHICLES.ID}
-        component={Vehicles}
-        options={{
-          drawerIcon: () => (
-            <Icon size={25} name={'car'} color={MAIN_COLORS.ORANGE} />
-          ),
-        }}
-      /> */}
 
       <Drawer.Screen
         name={SCREENS.HOME.INCIDENT.ID}
@@ -175,16 +160,6 @@ const HomeDrawer = () => {
           ),
         }}
       />
-
-      {/* <Drawer.Screen
-        name={SCREENS.HOME.SETTINGS.ID}
-        component={Settings}
-        options={{
-          drawerIcon: () => (
-            <Icon size={30} name={'gear'} color={MAIN_COLORS.ORANGE} />
-          ),
-        }}
-      /> */}
     </Drawer.Navigator>
   );
 };

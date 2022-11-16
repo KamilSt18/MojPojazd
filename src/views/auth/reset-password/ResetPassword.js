@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
 });
 
 const ResetPassword = ({navigation}) => {
-  const {resetPassword, modalVisible, setModalVisible, err} =
+  const {resetPassword, modalVisible, setModalVisible} =
     useContext(AuthContext);
   const {
     control,

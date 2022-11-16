@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {SafeAreaView, Text, Modal, StyleSheet, View} from 'react-native';
-import {FormattedMessage} from 'react-intl';
+// import {FormattedMessage} from 'react-intl';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function MyAccount({navigation}) {
+export default function MyAccount() {
   const {user, updateProfile, modalVisible, setModalVisible, err} =
     useContext(AuthContext);
   const {

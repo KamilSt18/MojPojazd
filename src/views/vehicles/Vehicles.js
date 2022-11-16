@@ -1,11 +1,9 @@
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import React, {useState, useEffect, useContext} from 'react';
-import {StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import firestore from '@react-native-firebase/firestore';
 import SplashScreen from 'react-native-splash-screen';
 
-import {appStyles} from '../../styles/constants';
 import AddVehicle from './add-view/AddVehicle';
 import ShowVehicles from './show-view/ShowVehicles';
 import {SCREENS} from '../../navigation/constants';
@@ -14,9 +12,6 @@ import {AuthContext} from '../../navigation/AuthProvider';
 
 const Tab = createMaterialBottomTabNavigator();
 
-const styles = StyleSheet.create({
-  ...appStyles,
-});
 const Vehicles = () => {
   const {user, afterLogin, setAfterLogin} = useContext(AuthContext);
   const [update, setUpdate] = useState(false);
@@ -40,6 +35,7 @@ const Vehicles = () => {
       !afterLogin && SplashScreen.hide();
     }, 2500);
     setAfterLogin(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user.uid, update]);
   return (
     <Tab.Navigator

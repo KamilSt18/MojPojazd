@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {ADDITIONAL_COLORS, MAIN_COLORS} from '../styles/colors';
+import {ADDITIONAL_COLORS} from '../styles/colors';
 
 const styles = StyleSheet.create({
   container: {

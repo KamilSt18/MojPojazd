@@ -10,7 +10,6 @@ const Routes = () => {
   const {user, setUser} = useContext(AuthContext);
   const {initializing, setInitializing} = useState(true);
 
-  // useEffect onAuthStateChange -> setUser -> isInitialization -> setLoading
   const onAuthStateChanged = newUser => {
     setUser(newUser);
     if (initializing) {

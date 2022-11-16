@@ -86,7 +86,7 @@ const SingupScreen = ({navigation}) => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = ({email, password, confirmPassword}) => {
+  const onSubmit = ({email, password}) => {
     try {
       register(email, password);
     } catch (e) {
