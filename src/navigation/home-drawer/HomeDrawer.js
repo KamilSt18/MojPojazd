@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   createDrawerNavigator,
   DrawerItemList,
@@ -6,7 +6,15 @@ import {
   DrawerItem,
 } from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {View, StyleSheet, Linking} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Linking,
+  Animated,
+  Easing,
+  TouchableOpacity,
+  Text,
+} from 'react-native';
 import {SvgXml} from 'react-native-svg';
 
 import {SCREENS} from '../constants';
@@ -37,15 +45,61 @@ const styles = StyleSheet.create({
   },
 });
 function CustomDrawerContent(props) {
+  let [rotateValueHolder, setRotateValueHolder] = useState(
+    new Animated.Value(0),
+  );
+  const [blocked, setBlocked] = useState(false);
+  const startImageRotateFunction = () => {
+    if (blocked) {
+      return;
+    }
+    let animation = Animated.loop(
+      Animated.timing(rotateValueHolder, {
+        toValue: 1,
+        duration: 3000,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      }),
+    );
+    animation.start();
+    setBlocked(true);
+    setTimeout(() => {
+      animation.stop();
+      setRotateValueHolder(new Animated.Value(0));
+      setBlocked(false);
+    }, 3000);
+  };
   // const [lang, handleChangeLanguage] = useContext(LangContext);
   const {logout} = useContext(AuthContext);
   return (
     <DrawerContentScrollView
       {...props}
       contentContainerStyle={styles.contentContainer}>
-      <View style={styles.logoSection}>
-        <SvgXml width="200" height="200" xml={logoNew} />
-      </View>
+      <Animated.View
+        style={[
+          styles.logoSection,
+          {
+            transform: [
+              {
+                rotate: rotateValueHolder.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: ['0deg', '360deg'],
+                }),
+              },
+            ],
+          },
+        ]}>
+        <TouchableOpacity
+          onPress={() => startImageRotateFunction()}
+          activeOpacity={0.9}>
+          <SvgXml
+            width="200"
+            height="200"
+            xml={logoNew}
+            style={{marginLeft: 10}}
+          />
+        </TouchableOpacity>
+      </Animated.View>
       <DrawerItemList {...props} />
       <View style={styles.hrContainer}>
         <View style={styles.hr} />

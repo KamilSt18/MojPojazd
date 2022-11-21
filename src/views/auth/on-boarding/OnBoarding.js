@@ -62,10 +62,6 @@ const OnBoarding = ({navigation}) => {
           <View style={styles.hr} />
         </View>
         <Text style={styles.welcomeText}>
-          {/* <ForrmattedMessage
-            defaultMessage={'Zarządzaj swoimi pojazdami jedną aplikacją!'}
-            id={'views.auth.onboarding.welcomeText'}
-          /> */}
           Zarządzaj swoimi pojazdami jedną aplikacją!
         </Text>
       </View>
