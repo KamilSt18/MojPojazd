@@ -19,6 +19,13 @@ const Vehicles = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     !afterLogin && SplashScreen.show();
+    setTimeout(() => {
+      !afterLogin && SplashScreen.hide();
+    }, 2500);
+    setAfterLogin(false);
+  }, []);
+
+  useEffect(() => {
     setData([]);
     firestore()
       .collection(`users/${user.uid}/vehicles`)
@@ -31,10 +38,6 @@ const Vehicles = () => {
           setData(arr => [...arr, data]);
         });
       });
-    setTimeout(() => {
-      !afterLogin && SplashScreen.hide();
-    }, 2500);
-    setAfterLogin(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user.uid, update]);
   return (

@@ -20,9 +20,9 @@ export const AuthProvider = ({children}) => {
         afterLogin,
         setAfterLogin,
         login: async (email, password, resetField) => {
+          setAfterLogin(true);
           try {
             await auth().signInWithEmailAndPassword(email, password);
-            setAfterLogin(true);
           } catch (e) {
             console.log(e);
 
@@ -36,6 +36,7 @@ export const AuthProvider = ({children}) => {
           }
         },
         register: async (email, password) => {
+          setAfterLogin(true);
           try {
             await auth().createUserWithEmailAndPassword(email, password);
           } catch (e) {
