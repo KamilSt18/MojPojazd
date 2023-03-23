@@ -83,7 +83,7 @@ const OnBoarding = ({navigation}) => {
           sign={true}
         />
       </View>
-      <Text style={styles.footerText}>Wersja aplikacji: 1.0.0</Text>
+      <Text style={styles.footerText}>Wersja aplikacji: 1.0.1</Text>
     </SafeAreaView>
   );
 };
